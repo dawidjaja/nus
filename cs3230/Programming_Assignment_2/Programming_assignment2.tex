@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{forest}
+\usepackage{tikz,pgf}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CS3230 - Programming Assignment 2}
+\fancyhead[R]{Daniel Alfred (A0184588J)}
+\fancyfoot[C]{\thepage}
+\begin{document}
+	\begin{enumerate}
+		\item {
+			%\begin{align*}
+			%	&\text{We sort by $W_i + S_i$}\\
+			%	&\text{So $\forall{i < n},W_i + S_i \leq W_{i + 1} + S_{i + 1}$}\\
+			%	&\text{We need to prove that $\forall{i < n},\sum_{x = 1}^{i}W_x \leq S_{i + 1}$}\\
+			%	&\text{Proof by Induction:}\\
+			%	&\quad \text{Base Case:}\\
+			%	&\qquad \text{If $n = 1$, True (Nothing to prove since it's only 1 object)}\\
+			%	&\quad \text{Induction Case:}\\
+			%	&\qquad W_i + S_i \leq W_{i + 1} + S_{i + 1}\\
+			%	&\qquad W_i + \sum_{x=1}^{i-1}W_x\leq W_{i + 1} + S_{i + 1}\\
+			%	&\qquad \sum_{x=1}^{i}W_x\leq W_{i + 1} + S_{i + 1}\\
+			%	&\qquad \sum_{x=1}^{i}W_x\leq S_{i + 1}\\
+			%	&\text{Proven}\\
+			%\end{align*}
+			\begin{align*}
+				&\text{1. Sort by $W_i + S_i$ decreasing and if same by $W_i$ by decreasing}\\
+				&\qquad\text{We can use counting sort for this and cost $O(N + W_{max} + S_{max})$}\\
+				&\text{2. Remove unimportant item}\\
+				&\qquad\text{If the occurence of one item with the weight $W_i$ is above $\frac{W_{max} + S_{max}}{W_i}$}\\
+				&\qquad\text{We don't need to consider that item again}\\
+				&\qquad\text{Using harmonic series, this will make the remaining item at most $S \lg S$}\\
+				&\qquad O(N)\\
+				&\text{3. Use DP[i][j] which define by:}\\
+				&\qquad\text{The largest total weight with item from i to n with the available remaining weight possible is j.}\\
+				&\qquad O((S_{max} + W_{max})\cdot\lg(S_{max} + W_{max}) \cdot S_{max}) = O((S_{max}^2 + S_{max}\cdot W_{max})\cdot\lg (S_{max} + W_{max}))\\
+				&\text{4. The base case happen when i = number of item}\\
+				&\qquad\text{If i = number of item, the largest weight is 0}\\
+				&\text{5. $DP[i][j] = max(DP[i + 1][j], W_i + DP[i + 1][min(j - W_i, S_i)])$}\\
+				&\qquad\text{We need to make sure that for the latter case, $W_i \leq j$ is always happen}\\
+				&\text{6. So the answer should be in DP[0][$\inf$]}\\
+				&\qquad\text{In this case, $\inf = W_{max} + S_{max}$}\\
+				&\text{7. Backtrack the items}\\
+				&\qquad\text{Keep track for every DP state, whether they come from the path that pick item$_i$ or not}\\
+				&\qquad O(S_{max} + W_{max})\\
+				&\text{Final Complexity:}\\
+				&\qquad =O(N + W_{max} + S_{max} + N + (S_{max}^2 + S_{max}\cdot W_{max})\cdot\lg (S_{max} + W_{max}) + S_{max} + W_{max})\\
+				&\qquad =O(N + W_{max} + S_{max} + (S_{max}^2 + S_{max}\cdot W_{max})\cdot\lg (S_{max} + W_{max}))\\
+`			\end{align*}
+		}
+	\end{enumerate}     
+\end{document}
