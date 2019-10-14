@@ -1,0 +1,1498 @@
+Test 1
+Test 2
+Test 3
+Test 4
+Test 5
+Test 6
+Test 7
+1
+Test 8
+iterate: 0 -> 1
+iterate: 1 -> 2
+iterate: 2 -> 3
+4
+Test 9
+forEach: 0
+iterate: 0 -> 1
+forEach: 1
+iterate: 1 -> 2
+forEach: 2
+iterate: 2 -> 3
+forEach: 3
+Test 10
+iterate: 0 -> 1
+2
+Test 11
+0
+Test 12
+forEach: 0
+iterate: 0 -> 1
+forEach: 1
+Test 13
+forEach: 0
+iterate: 0 -> 123
+forEach: 123
+Test 14
+Test 15
+Test 16
+generate: 1
+forEach: 1
+generate: 2
+forEach: 2
+Test 17
+generate: 251
+forEach: 251
+generate: 80
+forEach: 80
+generate: 241
+forEach: 241
+generate: 828
+forEach: 828
+generate: 55
+forEach: 55
+generate: 84
+forEach: 84
+generate: 375
+forEach: 375
+generate: 802
+forEach: 802
+generate: 501
+forEach: 501
+generate: 389
+forEach: 389
+generate: 517
+forEach: 517
+generate: 942
+forEach: 942
+generate: 390
+forEach: 390
+generate: 806
+forEach: 806
+generate: 12
+forEach: 12
+generate: 384
+forEach: 384
+generate: 787
+forEach: 787
+generate: 303
+forEach: 303
+generate: 532
+forEach: 532
+generate: 175
+forEach: 175
+generate: 801
+forEach: 801
+generate: 351
+forEach: 351
+generate: 792
+forEach: 792
+generate: 316
+forEach: 316
+generate: 428
+forEach: 428
+generate: 781
+forEach: 781
+generate: 425
+forEach: 425
+generate: 943
+forEach: 943
+generate: 871
+forEach: 871
+generate: 439
+forEach: 439
+generate: 729
+forEach: 729
+generate: 397
+forEach: 397
+generate: 501
+forEach: 501
+generate: 825
+forEach: 825
+generate: 903
+forEach: 903
+generate: 555
+forEach: 555
+generate: 952
+forEach: 952
+generate: 831
+forEach: 831
+generate: 10
+forEach: 10
+generate: 108
+forEach: 108
+generate: 396
+forEach: 396
+generate: 582
+forEach: 582
+generate: 99
+forEach: 99
+generate: 758
+forEach: 758
+generate: 318
+forEach: 318
+generate: 580
+forEach: 580
+generate: 412
+forEach: 412
+generate: 691
+forEach: 691
+generate: 350
+forEach: 350
+generate: 728
+forEach: 728
+generate: 774
+forEach: 774
+generate: 644
+forEach: 644
+generate: 54
+forEach: 54
+generate: 508
+forEach: 508
+generate: 380
+forEach: 380
+generate: 599
+forEach: 599
+generate: 158
+forEach: 158
+generate: 655
+forEach: 655
+generate: 594
+forEach: 594
+generate: 497
+forEach: 497
+generate: 294
+forEach: 294
+generate: 87
+forEach: 87
+generate: 553
+forEach: 553
+generate: 318
+forEach: 318
+generate: 583
+forEach: 583
+generate: 499
+forEach: 499
+generate: 370
+forEach: 370
+generate: 773
+forEach: 773
+generate: 990
+forEach: 990
+generate: 519
+forEach: 519
+generate: 76
+forEach: 76
+generate: 121
+forEach: 121
+generate: 918
+forEach: 918
+generate: 56
+forEach: 56
+generate: 188
+forEach: 188
+generate: 826
+forEach: 826
+generate: 849
+forEach: 849
+generate: 992
+forEach: 992
+generate: 552
+forEach: 552
+generate: 875
+forEach: 875
+generate: 3
+forEach: 3
+generate: 900
+forEach: 900
+generate: 832
+forEach: 832
+generate: 364
+forEach: 364
+generate: 275
+forEach: 275
+generate: 544
+forEach: 544
+generate: 409
+forEach: 409
+generate: 55
+forEach: 55
+generate: 398
+forEach: 398
+generate: 116
+forEach: 116
+generate: 687
+forEach: 687
+generate: 439
+forEach: 439
+generate: 953
+forEach: 953
+generate: 367
+forEach: 367
+generate: 551
+forEach: 551
+generate: 141
+forEach: 141
+generate: 715
+forEach: 715
+generate: 466
+forEach: 466
+generate: 174
+forEach: 174
+generate: 677
+forEach: 677
+Test 18
+iterate: 0 -> 1
+iterate: 1 -> 2
+iterate: 2 -> 3
+iterate: 3 -> 4
+[0, 1, 2, 3, 4]
+Test 19
+Test 20
+Test 21
+Test 22
+Test 23
+Test 24
+takeWhile: 0 -> true
+iterate: 0 -> 1
+takeWhile: 1 -> true
+iterate: 1 -> 2
+takeWhile: 2 -> false
+2
+Test 25
+takeWhile: 0 -> true
+iterate: 0 -> 1
+takeWhile: 1 -> false
+1
+Test 26
+takeWhile: 0 -> false
+0
+Test 27
+map: 0 -> 0
+takeWhile: 0 -> true
+[0]
+Test 28
+generate: 1
+map: 1 -> 1
+takeWhile: 1 -> true
+[1]
+Test 29
+generate: 251
+map: 251 -> 251
+takeWhile: 251 -> false
+[]
+Test 30
+takeWhile: 0 -> true
+iterate: 0 -> 1
+takeWhile: 1 -> true
+iterate: 1 -> 2
+takeWhile: 2 -> false
+2
+Test 31
+takeWhile: 0 -> true
+iterate: 0 -> 1
+takeWhile: 1 -> true
+iterate: 1 -> 2
+takeWhile: 2 -> false
+[0, 1]
+Test 32
+Test 33
+Test 34
+Test 35
+Test 36
+Test 37
+Test 38
+Test 39
+Test 40
+Test 41
+Test 42
+Test 43
+Test 44
+filter: 0 -> true
+iterate: 0 -> 1
+filter: 1 -> true
+iterate: 1 -> 2
+filter: 2 -> true
+iterate: 2 -> 3
+filter: 3 -> true
+4
+Test 45
+filter: 0 -> false
+iterate: 0 -> 1
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> false
+iterate: 7 -> 8
+filter: 8 -> false
+iterate: 8 -> 9
+filter: 9 -> false
+iterate: 9 -> 10
+filter: 10 -> false
+iterate: 10 -> 11
+filter: 11 -> true
+iterate: 11 -> 12
+filter: 12 -> true
+iterate: 12 -> 13
+filter: 13 -> true
+iterate: 13 -> 14
+filter: 14 -> true
+4
+Test 46
+filter: 0 -> false
+iterate: 0 -> 1
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> false
+iterate: 7 -> 8
+filter: 8 -> false
+iterate: 8 -> 9
+filter: 9 -> false
+iterate: 9 -> 10
+filter: 10 -> false
+iterate: 10 -> 11
+filter: 11 -> true
+iterate: 11 -> 12
+filter: 12 -> true
+iterate: 12 -> 13
+filter: 13 -> true
+iterate: 13 -> 14
+filter: 14 -> true
+[11, 12, 13, 14]
+Test 47
+filter: 0 -> false
+iterate: 0 -> 1
+filter: 1 -> true
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> false
+iterate: 7 -> 8
+filter: 8 -> false
+iterate: 8 -> 9
+filter: 9 -> false
+iterate: 9 -> 10
+filter: 10 -> false
+iterate: 10 -> 11
+filter: 11 -> true
+iterate: 11 -> 12
+filter: 12 -> false
+iterate: 12 -> 13
+filter: 13 -> false
+iterate: 13 -> 14
+filter: 14 -> false
+iterate: 14 -> 15
+filter: 15 -> false
+iterate: 15 -> 16
+filter: 16 -> false
+iterate: 16 -> 17
+filter: 17 -> false
+iterate: 17 -> 18
+filter: 18 -> false
+iterate: 18 -> 19
+filter: 19 -> false
+iterate: 19 -> 20
+filter: 20 -> false
+iterate: 20 -> 21
+filter: 21 -> true
+iterate: 21 -> 22
+filter: 22 -> false
+iterate: 22 -> 23
+filter: 23 -> false
+iterate: 23 -> 24
+filter: 24 -> false
+iterate: 24 -> 25
+filter: 25 -> false
+iterate: 25 -> 26
+filter: 26 -> false
+iterate: 26 -> 27
+filter: 27 -> false
+iterate: 27 -> 28
+filter: 28 -> false
+iterate: 28 -> 29
+filter: 29 -> false
+iterate: 29 -> 30
+filter: 30 -> false
+iterate: 30 -> 31
+filter: 31 -> true
+[1, 11, 21, 31]
+Test 48
+filter: 0 -> true
+forEach: 0
+iterate: 0 -> 1
+filter: 1 -> true
+forEach: 1
+iterate: 1 -> 2
+filter: 2 -> true
+forEach: 2
+iterate: 2 -> 3
+filter: 3 -> true
+forEach: 3
+Test 49
+filter: 0 -> false
+iterate: 0 -> 1
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> false
+iterate: 7 -> 8
+filter: 8 -> false
+iterate: 8 -> 9
+filter: 9 -> false
+iterate: 9 -> 10
+filter: 10 -> false
+iterate: 10 -> 11
+filter: 11 -> true
+forEach: 11
+iterate: 11 -> 12
+filter: 12 -> true
+forEach: 12
+iterate: 12 -> 13
+filter: 13 -> true
+forEach: 13
+iterate: 13 -> 14
+filter: 14 -> true
+forEach: 14
+Test 50
+filter: 0 -> true
+filter: 0 -> true
+forEach: 0
+iterate: 0 -> 1
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> true
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> false
+iterate: 7 -> 8
+filter: 8 -> false
+iterate: 8 -> 9
+filter: 9 -> false
+iterate: 9 -> 10
+filter: 10 -> true
+filter: 10 -> true
+forEach: 10
+iterate: 10 -> 11
+filter: 11 -> false
+iterate: 11 -> 12
+filter: 12 -> false
+iterate: 12 -> 13
+filter: 13 -> false
+iterate: 13 -> 14
+filter: 14 -> false
+iterate: 14 -> 15
+filter: 15 -> true
+filter: 15 -> false
+iterate: 15 -> 16
+filter: 16 -> false
+iterate: 16 -> 17
+filter: 17 -> false
+iterate: 17 -> 18
+filter: 18 -> false
+iterate: 18 -> 19
+filter: 19 -> false
+iterate: 19 -> 20
+filter: 20 -> true
+filter: 20 -> true
+forEach: 20
+iterate: 20 -> 21
+filter: 21 -> false
+iterate: 21 -> 22
+filter: 22 -> false
+iterate: 22 -> 23
+filter: 23 -> false
+iterate: 23 -> 24
+filter: 24 -> false
+iterate: 24 -> 25
+filter: 25 -> true
+filter: 25 -> false
+iterate: 25 -> 26
+filter: 26 -> false
+iterate: 26 -> 27
+filter: 27 -> false
+iterate: 27 -> 28
+filter: 28 -> false
+iterate: 28 -> 29
+filter: 29 -> false
+iterate: 29 -> 30
+filter: 30 -> true
+filter: 30 -> true
+forEach: 30
+Test 51
+generate: 10
+filter: 10 -> true
+filter: 10 -> true
+forEach: 10
+Test 52
+generate: 10
+filter: 10 -> true
+filter: 10 -> false
+generate: 20
+filter: 20 -> true
+filter: 20 -> false
+generate: 30
+filter: 30 -> true
+filter: 30 -> true
+forEach: 30
+generate: 40
+filter: 40 -> true
+filter: 40 -> false
+generate: 50
+filter: 50 -> true
+filter: 50 -> false
+generate: 60
+filter: 60 -> true
+filter: 60 -> true
+forEach: 60
+generate: 70
+filter: 70 -> true
+filter: 70 -> false
+generate: 80
+filter: 80 -> true
+filter: 80 -> false
+generate: 90
+filter: 90 -> true
+filter: 90 -> true
+forEach: 90
+generate: 100
+filter: 100 -> true
+filter: 100 -> false
+generate: 110
+filter: 110 -> true
+filter: 110 -> false
+generate: 120
+filter: 120 -> true
+filter: 120 -> true
+forEach: 120
+Test 53
+generate: 727
+filter: 727 -> false
+generate: 832
+filter: 832 -> true
+filter: 832 -> true
+forEach: 832
+generate: 209
+filter: 209 -> false
+generate: 628
+filter: 628 -> true
+filter: 628 -> true
+forEach: 628
+generate: 322
+filter: 322 -> true
+filter: 322 -> false
+generate: 617
+filter: 617 -> false
+generate: 565
+filter: 565 -> false
+generate: 249
+filter: 249 -> false
+generate: 825
+filter: 825 -> false
+generate: 287
+filter: 287 -> false
+generate: 344
+filter: 344 -> true
+filter: 344 -> true
+forEach: 344
+generate: 416
+filter: 416 -> true
+filter: 416 -> true
+forEach: 416
+Test 54
+filter: 0 -> false
+iterate: 0 -> 1
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> true
+iterate: 7 -> 8
+filter: 8 -> true
+[7, 8]
+Test 55
+filter: 0 -> false
+iterate: 0 -> 1
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> false
+iterate: 4 -> 5
+filter: 5 -> false
+iterate: 5 -> 6
+filter: 6 -> false
+iterate: 6 -> 7
+filter: 7 -> false
+iterate: 7 -> 8
+filter: 8 -> false
+iterate: 8 -> 9
+filter: 9 -> false
+iterate: 9 -> 10
+filter: 10 -> false
+iterate: 10 -> 11
+filter: 11 -> true
+filter: 11 -> true
+[11]
+Test 56
+filter: 0 -> true
+iterate: 0 -> 1
+filter: 1 -> true
+iterate: 1 -> 2
+filter: 2 -> false
+iterate: 2 -> 3
+filter: 3 -> false
+2
+Test 57
+Test 58
+Test 59
+Test 60
+Test 61
+Test 62
+Test 63
+Test 64
+Test 65
+map: 0 -> 0
+filter: 0 -> false
+iterate: 0 -> 1
+map: 1 -> 1
+filter: 1 -> true
+iterate: 1 -> 2
+map: 2 -> 4
+filter: 4 -> false
+iterate: 2 -> 3
+map: 3 -> 9
+filter: 9 -> true
+iterate: 3 -> 4
+map: 4 -> 16
+filter: 16 -> false
+iterate: 4 -> 5
+map: 5 -> 25
+filter: 25 -> true
+[1, 9, 25]
+Test 66
+map: 0 -> 0
+iterate: 0 -> 1
+map: 1 -> 1
+iterate: 1 -> 2
+map: 2 -> 4
+iterate: 2 -> 3
+map: 3 -> 9
+iterate: 3 -> 4
+map: 4 -> 16
+[0, 1, 4, 9, 16]
+Test 67
+takeWhile: 0 -> true
+iterate: 0 -> 1
+takeWhile: 1 -> true
+iterate: 1 -> 2
+takeWhile: 2 -> true
+iterate: 2 -> 3
+takeWhile: 3 -> true
+iterate: 3 -> 4
+takeWhile: 4 -> true
+iterate: 4 -> 5
+takeWhile: 5 -> false
+[0, 1, 2, 3, 4]
+Test 68
+generate: 1
+map: 1 -> 2
+map: 2 -> 1
+filter: 1 -> false
+generate: 2
+map: 2 -> 4
+map: 4 -> 2
+filter: 2 -> false
+generate: 3
+map: 3 -> 6
+map: 6 -> 3
+filter: 3 -> true
+map: 3 -> 9
+forEach: 9
+generate: 4
+map: 4 -> 8
+map: 8 -> 4
+filter: 4 -> false
+generate: 5
+map: 5 -> 10
+map: 10 -> 5
+filter: 5 -> false
+generate: 6
+map: 6 -> 12
+map: 12 -> 6
+filter: 6 -> true
+map: 6 -> 36
+forEach: 36
+generate: 7
+map: 7 -> 14
+map: 14 -> 7
+filter: 7 -> false
+generate: 8
+map: 8 -> 16
+map: 16 -> 8
+filter: 8 -> false
+generate: 9
+map: 9 -> 18
+map: 18 -> 9
+filter: 9 -> true
+map: 9 -> 81
+forEach: 81
+generate: 10
+map: 10 -> 20
+map: 20 -> 10
+filter: 10 -> false
+generate: 11
+map: 11 -> 22
+map: 22 -> 11
+filter: 11 -> false
+generate: 12
+map: 12 -> 24
+map: 24 -> 12
+filter: 12 -> true
+map: 12 -> 144
+forEach: 144
+generate: 13
+map: 13 -> 26
+map: 26 -> 13
+filter: 13 -> false
+generate: 14
+map: 14 -> 28
+map: 28 -> 14
+filter: 14 -> false
+generate: 15
+map: 15 -> 30
+map: 30 -> 15
+filter: 15 -> true
+map: 15 -> 225
+forEach: 225
+generate: 16
+map: 16 -> 32
+map: 32 -> 16
+filter: 16 -> false
+generate: 17
+map: 17 -> 34
+map: 34 -> 17
+filter: 17 -> false
+generate: 18
+map: 18 -> 36
+map: 36 -> 18
+filter: 18 -> true
+map: 18 -> 324
+forEach: 324
+generate: 19
+map: 19 -> 38
+map: 38 -> 19
+filter: 19 -> false
+generate: 20
+map: 20 -> 40
+map: 40 -> 20
+filter: 20 -> false
+generate: 21
+map: 21 -> 42
+map: 42 -> 21
+filter: 21 -> true
+map: 21 -> 441
+forEach: 441
+generate: 22
+map: 22 -> 44
+map: 44 -> 22
+filter: 22 -> false
+generate: 23
+map: 23 -> 46
+map: 46 -> 23
+filter: 23 -> false
+generate: 24
+map: 24 -> 48
+map: 48 -> 24
+filter: 24 -> true
+map: 24 -> 576
+forEach: 576
+generate: 25
+map: 25 -> 50
+map: 50 -> 25
+filter: 25 -> false
+generate: 26
+map: 26 -> 52
+map: 52 -> 26
+filter: 26 -> false
+generate: 27
+map: 27 -> 54
+map: 54 -> 27
+filter: 27 -> true
+map: 27 -> 729
+forEach: 729
+generate: 28
+map: 28 -> 56
+map: 56 -> 28
+filter: 28 -> false
+generate: 29
+map: 29 -> 58
+map: 58 -> 29
+filter: 29 -> false
+generate: 30
+map: 30 -> 60
+map: 60 -> 30
+filter: 30 -> true
+map: 30 -> 900
+forEach: 900
+Test 69
+generate: 1
+map: 1 -> 2
+map: 2 -> 1
+filter: 1 -> false
+generate: 2
+map: 2 -> 4
+map: 4 -> 2
+filter: 2 -> false
+generate: 3
+map: 3 -> 6
+map: 6 -> 3
+filter: 3 -> true
+map: 3 -> 9
+forEach: 9
+generate: 4
+map: 4 -> 8
+map: 8 -> 4
+filter: 4 -> false
+generate: 5
+map: 5 -> 10
+map: 10 -> 5
+filter: 5 -> false
+generate: 6
+map: 6 -> 12
+map: 12 -> 6
+filter: 6 -> true
+map: 6 -> 36
+forEach: 36
+generate: 7
+map: 7 -> 14
+map: 14 -> 7
+filter: 7 -> false
+generate: 8
+map: 8 -> 16
+map: 16 -> 8
+filter: 8 -> false
+generate: 9
+map: 9 -> 18
+map: 18 -> 9
+filter: 9 -> true
+map: 9 -> 81
+forEach: 81
+Test 70
+generate: 1
+map: 1 -> 2
+map: 2 -> 1
+filter: 1 -> false
+generate: 2
+map: 2 -> 4
+map: 4 -> 2
+filter: 2 -> false
+generate: 3
+map: 3 -> 6
+map: 6 -> 3
+filter: 3 -> true
+map: 3 -> 9
+forEach: 9
+generate: 4
+map: 4 -> 8
+map: 8 -> 4
+filter: 4 -> false
+generate: 5
+map: 5 -> 10
+map: 10 -> 5
+filter: 5 -> false
+generate: 6
+map: 6 -> 12
+map: 12 -> 6
+filter: 6 -> true
+map: 6 -> 36
+forEach: 36
+generate: 7
+map: 7 -> 14
+map: 14 -> 7
+filter: 7 -> false
+generate: 8
+map: 8 -> 16
+map: 16 -> 8
+filter: 8 -> false
+Test 71
+generate: 1
+map: 1 -> 2
+map: 2 -> 1
+filter: 1 -> false
+generate: 2
+map: 2 -> 4
+map: 4 -> 2
+filter: 2 -> false
+generate: 3
+map: 3 -> 6
+map: 6 -> 3
+filter: 3 -> true
+map: 3 -> 9
+forEach: 9
+generate: 4
+map: 4 -> 8
+map: 8 -> 4
+filter: 4 -> false
+generate: 5
+map: 5 -> 10
+map: 10 -> 5
+filter: 5 -> false
+generate: 6
+map: 6 -> 12
+map: 12 -> 6
+filter: 6 -> true
+map: 6 -> 36
+forEach: 36
+generate: 7
+map: 7 -> 14
+map: 14 -> 7
+filter: 7 -> false
+generate: 8
+map: 8 -> 16
+map: 16 -> 8
+filter: 8 -> false
+generate: 9
+map: 9 -> 18
+map: 18 -> 9
+filter: 9 -> true
+map: 9 -> 81
+forEach: 81
+generate: 10
+map: 10 -> 20
+map: 20 -> 10
+filter: 10 -> false
+generate: 11
+map: 11 -> 22
+map: 22 -> 11
+filter: 11 -> false
+generate: 12
+map: 12 -> 24
+map: 24 -> 12
+filter: 12 -> true
+map: 12 -> 144
+forEach: 144
+generate: 13
+map: 13 -> 26
+map: 26 -> 13
+filter: 13 -> false
+generate: 14
+map: 14 -> 28
+map: 28 -> 14
+filter: 14 -> false
+generate: 15
+map: 15 -> 30
+map: 30 -> 15
+filter: 15 -> true
+map: 15 -> 225
+forEach: 225
+generate: 16
+map: 16 -> 32
+map: 32 -> 16
+filter: 16 -> false
+generate: 17
+map: 17 -> 34
+map: 34 -> 17
+filter: 17 -> false
+generate: 18
+map: 18 -> 36
+map: 36 -> 18
+filter: 18 -> true
+map: 18 -> 324
+forEach: 324
+generate: 19
+map: 19 -> 38
+map: 38 -> 19
+filter: 19 -> false
+generate: 20
+map: 20 -> 40
+map: 40 -> 20
+filter: 20 -> false
+generate: 21
+map: 21 -> 42
+map: 42 -> 21
+filter: 21 -> true
+map: 21 -> 441
+forEach: 441
+generate: 22
+map: 22 -> 44
+map: 44 -> 22
+filter: 22 -> false
+generate: 23
+map: 23 -> 46
+map: 46 -> 23
+filter: 23 -> false
+generate: 24
+map: 24 -> 48
+map: 48 -> 24
+filter: 24 -> true
+map: 24 -> 576
+forEach: 576
+Test 72
+generate: 905
+map: 905 -> 1810
+map: 1810 -> 905
+filter: 905 -> false
+generate: 615
+map: 615 -> 1230
+map: 1230 -> 615
+filter: 615 -> true
+map: 615 -> 378225
+forEach: 378225
+generate: 812
+map: 812 -> 1624
+map: 1624 -> 812
+filter: 812 -> false
+generate: 194
+map: 194 -> 388
+map: 388 -> 194
+filter: 194 -> false
+generate: 980
+map: 980 -> 1960
+map: 1960 -> 980
+filter: 980 -> false
+generate: 228
+map: 228 -> 456
+map: 456 -> 228
+filter: 228 -> true
+map: 228 -> 51984
+forEach: 51984
+generate: 931
+map: 931 -> 1862
+map: 1862 -> 931
+filter: 931 -> false
+generate: 51
+map: 51 -> 102
+map: 102 -> 51
+filter: 51 -> true
+map: 51 -> 2601
+forEach: 2601
+generate: 437
+map: 437 -> 874
+map: 874 -> 437
+filter: 437 -> false
+generate: 624
+map: 624 -> 1248
+map: 1248 -> 624
+filter: 624 -> true
+map: 624 -> 389376
+forEach: 389376
+generate: 403
+map: 403 -> 806
+map: 806 -> 403
+filter: 403 -> false
+generate: 163
+map: 163 -> 326
+map: 326 -> 163
+filter: 163 -> false
+generate: 202
+map: 202 -> 404
+map: 404 -> 202
+filter: 202 -> false
+generate: 862
+map: 862 -> 1724
+map: 1724 -> 862
+filter: 862 -> false
+generate: 853
+map: 853 -> 1706
+map: 1706 -> 853
+filter: 853 -> false
+generate: 736
+map: 736 -> 1472
+map: 1472 -> 736
+filter: 736 -> false
+generate: 152
+map: 152 -> 304
+map: 304 -> 152
+filter: 152 -> false
+generate: 359
+map: 359 -> 718
+map: 718 -> 359
+filter: 359 -> false
+generate: 624
+map: 624 -> 1248
+map: 1248 -> 624
+filter: 624 -> true
+map: 624 -> 389376
+forEach: 389376
+generate: 765
+map: 765 -> 1530
+map: 1530 -> 765
+filter: 765 -> true
+map: 765 -> 585225
+forEach: 585225
+generate: 163
+map: 163 -> 326
+map: 326 -> 163
+filter: 163 -> false
+generate: 114
+map: 114 -> 228
+map: 228 -> 114
+filter: 114 -> true
+map: 114 -> 12996
+forEach: 12996
+generate: 506
+map: 506 -> 1012
+map: 1012 -> 506
+filter: 506 -> false
+generate: 852
+map: 852 -> 1704
+map: 1704 -> 852
+filter: 852 -> true
+map: 852 -> 725904
+forEach: 725904
+Test 73
+map: 32 -> 64
+map: 64 -> 32
+filter: 32 -> false
+iterate: 32 -> 34
+map: 34 -> 68
+map: 68 -> 34
+filter: 34 -> false
+iterate: 34 -> 36
+map: 36 -> 72
+map: 72 -> 36
+filter: 36 -> true
+takeWhile: 36 -> true
+map: 36 -> 1296
+forEach: 1296
+iterate: 36 -> 38
+map: 38 -> 76
+map: 76 -> 38
+filter: 38 -> false
+iterate: 38 -> 40
+map: 40 -> 80
+map: 80 -> 40
+filter: 40 -> false
+iterate: 40 -> 42
+map: 42 -> 84
+map: 84 -> 42
+filter: 42 -> true
+takeWhile: 42 -> true
+map: 42 -> 1764
+forEach: 1764
+iterate: 42 -> 44
+map: 44 -> 88
+map: 88 -> 44
+filter: 44 -> false
+iterate: 44 -> 46
+map: 46 -> 92
+map: 92 -> 46
+filter: 46 -> false
+iterate: 46 -> 48
+map: 48 -> 96
+map: 96 -> 48
+filter: 48 -> true
+takeWhile: 48 -> true
+map: 48 -> 2304
+forEach: 2304
+iterate: 48 -> 50
+map: 50 -> 100
+map: 100 -> 50
+filter: 50 -> false
+iterate: 50 -> 52
+map: 52 -> 104
+map: 104 -> 52
+filter: 52 -> false
+iterate: 52 -> 54
+map: 54 -> 108
+map: 108 -> 54
+filter: 54 -> true
+takeWhile: 54 -> true
+map: 54 -> 2916
+forEach: 2916
+iterate: 54 -> 56
+map: 56 -> 112
+map: 112 -> 56
+filter: 56 -> false
+iterate: 56 -> 58
+map: 58 -> 116
+map: 116 -> 58
+filter: 58 -> false
+iterate: 58 -> 60
+map: 60 -> 120
+map: 120 -> 60
+filter: 60 -> true
+takeWhile: 60 -> true
+map: 60 -> 3600
+forEach: 3600
+iterate: 60 -> 62
+map: 62 -> 124
+map: 124 -> 62
+filter: 62 -> false
+iterate: 62 -> 64
+map: 64 -> 128
+map: 128 -> 64
+filter: 64 -> false
+iterate: 64 -> 66
+map: 66 -> 132
+map: 132 -> 66
+filter: 66 -> true
+takeWhile: 66 -> true
+map: 66 -> 4356
+forEach: 4356
+iterate: 66 -> 68
+map: 68 -> 136
+map: 136 -> 68
+filter: 68 -> false
+iterate: 68 -> 70
+map: 70 -> 140
+map: 140 -> 70
+filter: 70 -> false
+iterate: 70 -> 72
+map: 72 -> 144
+map: 144 -> 72
+filter: 72 -> true
+takeWhile: 72 -> true
+map: 72 -> 5184
+forEach: 5184
+Test 74
+map: 32 -> 64
+map: 64 -> 32
+takeWhile: 32 -> true
+filter: 32 -> false
+iterate: 32 -> 34
+map: 34 -> 68
+map: 68 -> 34
+takeWhile: 34 -> true
+filter: 34 -> false
+iterate: 34 -> 36
+map: 36 -> 72
+map: 72 -> 36
+takeWhile: 36 -> true
+filter: 36 -> true
+map: 36 -> 1296
+forEach: 1296
+iterate: 36 -> 38
+map: 38 -> 76
+map: 76 -> 38
+takeWhile: 38 -> true
+filter: 38 -> false
+iterate: 38 -> 40
+map: 40 -> 80
+map: 80 -> 40
+takeWhile: 40 -> true
+filter: 40 -> false
+iterate: 40 -> 42
+map: 42 -> 84
+map: 84 -> 42
+takeWhile: 42 -> true
+filter: 42 -> true
+map: 42 -> 1764
+forEach: 1764
+iterate: 42 -> 44
+map: 44 -> 88
+map: 88 -> 44
+takeWhile: 44 -> true
+filter: 44 -> false
+iterate: 44 -> 46
+map: 46 -> 92
+map: 92 -> 46
+takeWhile: 46 -> true
+filter: 46 -> false
+iterate: 46 -> 48
+map: 48 -> 96
+map: 96 -> 48
+takeWhile: 48 -> true
+filter: 48 -> true
+map: 48 -> 2304
+forEach: 2304
+iterate: 48 -> 50
+map: 50 -> 100
+map: 100 -> 50
+takeWhile: 50 -> true
+filter: 50 -> false
+iterate: 50 -> 52
+map: 52 -> 104
+map: 104 -> 52
+takeWhile: 52 -> true
+filter: 52 -> false
+iterate: 52 -> 54
+map: 54 -> 108
+map: 108 -> 54
+takeWhile: 54 -> true
+filter: 54 -> true
+map: 54 -> 2916
+forEach: 2916
+iterate: 54 -> 56
+map: 56 -> 112
+map: 112 -> 56
+takeWhile: 56 -> true
+filter: 56 -> false
+iterate: 56 -> 58
+map: 58 -> 116
+map: 116 -> 58
+takeWhile: 58 -> true
+filter: 58 -> false
+iterate: 58 -> 60
+map: 60 -> 120
+map: 120 -> 60
+takeWhile: 60 -> true
+filter: 60 -> true
+map: 60 -> 3600
+forEach: 3600
+iterate: 60 -> 62
+map: 62 -> 124
+map: 124 -> 62
+takeWhile: 62 -> true
+filter: 62 -> false
+iterate: 62 -> 64
+map: 64 -> 128
+map: 128 -> 64
+takeWhile: 64 -> true
+filter: 64 -> false
+iterate: 64 -> 66
+map: 66 -> 132
+map: 132 -> 66
+takeWhile: 66 -> true
+filter: 66 -> true
+map: 66 -> 4356
+forEach: 4356
+iterate: 66 -> 68
+map: 68 -> 136
+map: 136 -> 68
+takeWhile: 68 -> true
+filter: 68 -> false
+iterate: 68 -> 70
+map: 70 -> 140
+map: 140 -> 70
+takeWhile: 70 -> true
+filter: 70 -> false
+iterate: 70 -> 72
+map: 72 -> 144
+map: 144 -> 72
+takeWhile: 72 -> true
+filter: 72 -> true
+map: 72 -> 5184
+forEach: 5184
+iterate: 72 -> 74
+map: 74 -> 148
+map: 148 -> 74
+takeWhile: 74 -> true
+filter: 74 -> false
+iterate: 74 -> 76
+map: 76 -> 152
+map: 152 -> 76
+takeWhile: 76 -> true
+filter: 76 -> false
+iterate: 76 -> 78
+map: 78 -> 156
+map: 156 -> 78
+takeWhile: 78 -> true
+filter: 78 -> true
+map: 78 -> 6084
+forEach: 6084
+Test 75
+map: 0 -> 0
+iterate: 0 -> 1
+map: 1 -> 1
+iterate: 1 -> 2
+map: 2 -> 4
+iterate: 2 -> 3
+map: 3 -> 9
+iterate: 3 -> 4
+map: 4 -> 16
+30
+Test 76
+iterate: 1 -> 2
+iterate: 2 -> 3
+iterate: 3 -> 4
+iterate: 4 -> 5
+0
+Test 77
+0
+Test 78
+1000
+Test 79
+iterate: 1 -> 2
+iterate: 2 -> 3
+iterate: 3 -> 4
+iterate: 4 -> 5
+Optional[120]
+Test 80
+iterate: 1 -> 2
+iterate: 2 -> 3
+iterate: 3 -> 4
+iterate: 4 -> 5
+Optional[5]
+Test 81
+Optional.empty
+Test 82
+0
+Test 83
+iterate: 1 -> 2
+iterate: 2 -> 3
+iterate: 3 -> 4
+iterate: 4 -> 5
+iterate: 5 -> 6
+iterate: 6 -> 7
+iterate: 7 -> 8
+iterate: 8 -> 9
+iterate: 9 -> 10
+10
+Test 84
+filter: 1 -> false
+iterate: 1 -> 2
+filter: 2 -> true
+iterate: 2 -> 3
+filter: 3 -> false
+iterate: 3 -> 4
+filter: 4 -> true
+2
+Test 85
+takeWhile: 1 -> true
+iterate: 1 -> 2
+takeWhile: 2 -> true
+2
