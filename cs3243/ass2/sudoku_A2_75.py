@@ -57,11 +57,16 @@ class Sudoku(object):
     def ac(self):
         # q = Queue.Queue()
         q = deque()
+        '''
+        for i in self.adj[a][b]:
+            q.append(((a, b), i))
+
+        '''
         for i in self.nines:
             for j in self.nines:
                 for k in self.adj[i][j]:
                     q.append(((i, j), k))
-        
+    
         while (len(q) != 0):
             (x, y) = q.popleft()
             # print(x, y)
@@ -82,7 +87,7 @@ class Sudoku(object):
         for i in curDomain[y][x]:
             self.domain = copy.deepcopy(curDomain)
             self.domain[y][x] = set([i])
-            if (self.ac()):
+            if (x % 3 != 2 or self.ac()):
                 if (self.dfs(y + (x + 1) // 9, (x + 1) % 9)):
                     return True
         return False
