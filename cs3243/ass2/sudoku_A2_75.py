@@ -1,10 +1,10 @@
 import sys
 import copy
-import queue
-import copy
+from collections import deque
 
 class Sudoku(object):
     def __init__(self, puzzle):
+        self.nines = [0, 1, 2, 3, 4, 5, 6, 7, 8]
         # you may add more attributes if you need
         self.puzzle = puzzle # self.puzzle is a list of lists
         self.ans = copy.deepcopy(puzzle) # self.ans is a list of lists
@@ -14,42 +14,37 @@ class Sudoku(object):
             tmp = []
             for elem in line:
                 if (elem == 0):
-                    tmp.append({1, 2, 3, 4, 5, 6, 7, 8, 9})
+                    tmp.append(set([1, 2, 3, 4, 5, 6, 7, 8, 9]))
                 else:
-                    tmp.append({elem})
+                    tmp.append(set([elem]))
             self.domain.append(tmp)
 
         self.adj = []
-        for i in range(9):
+        for i in self.nines:
             tmp = []
-            for j in range(9):
+            for j in self.nines:
                 tmp.append(set())
             self.adj.append(tmp)
 
-        for i in range(9):
-            for j in range(9):
-                for k in range(j + 1, 9):
+        for i in self.nines:
+            for j in self.nines:
+                for k in xrange(j + 1, 9):
                     self.adj[i][j].add((i, k))
                     self.adj[i][k].add((i, j))
-        for i in range(9):
-            for j in range(9):
-                for k in range(j + 1, 9):
+        for i in self.nines:
+            for j in self.nines:
+                for k in xrange(j + 1, 9):
                     self.adj[j][i].add((k, i))
                     self.adj[k][i].add((j, i))
-        for i in range(3):
-            for j in range(3):
+        for i in xrange(3):
+            for j in xrange(3):
                 tmp = []
-                for k in range(9):
+                for k in self.nines:
                     tmp.append((i * 3 + k // 3, j * 3 + (k % 3)))
-                for k in range(len(tmp)):
-                    for l in range(k + 1, len(tmp)):
+                for k in xrange(len(tmp)):
+                    for l in xrange(k + 1, len(tmp)):
                         self.adj[tmp[k][0]][tmp[k][1]].add(tmp[l])
                         self.adj[tmp[l][0]][tmp[l][1]].add(tmp[k])
-        """
-        for i in range(9):
-            for j in range(9):
-                print(i, j, self.adj[i][j])
-        """
 
     def revise(self, x, y):
         if (len(self.domain[y[0]][y[1]]) == 1):
@@ -60,48 +55,34 @@ class Sudoku(object):
         return False
 
     def ac(self):
-        q = queue.Queue()
-        for i in range(9):
-            for j in range(9):
+        # q = Queue.Queue()
+        q = deque()
+        for i in self.nines:
+            for j in self.nines:
                 for k in self.adj[i][j]:
-                    q.put(((i, j), k))
+                    q.append(((i, j), k))
         
-        while (not q.empty()):
-            (x, y) = q.get()
+        while (len(q) != 0):
+            (x, y) = q.popleft()
             # print(x, y)
             if (self.revise(x, y)):
                 if (self.domain[x[0]][x[1]] == set()):
                     return False
                 for neigh in self.adj[x[0]][x[1]]:
                     if (neigh != y):
-                        q.put((neigh, x))
+                        q.append((neigh, x))
         return True
 
-    def prettyprint(self, dom):
-        for i in dom:
-            for j in i:
-                if (j == set()):
-                    print('{}', end='\t')
-                else:
-                    print(j, end='\t')
-            print()
-
     def dfs(self, y, x):
-        # print(y, x)
-        # print(self.domain)
         if (y == 9 and x == 0):
-            # print("blyat")
             return True
         # copy by value
         curDomain = copy.deepcopy(self.domain)
 
         for i in curDomain[y][x]:
             self.domain = copy.deepcopy(curDomain)
-            self.domain[y][x] = {i}
-            # print(y, x)
-            # self.prettyprint(self.domain)
+            self.domain[y][x] = set([i])
             if (self.ac()):
-                # print("lanjut")
                 if (self.dfs(y + (x + 1) // 9, (x + 1) % 9)):
                     return True
         return False
@@ -112,11 +93,9 @@ class Sudoku(object):
         # don't print anything here. just resturn the answer
         # self.ans is a list of lists
 
-        # print(self.domain)
-        # print(self.dfs(0, 0))
         self.dfs(0, 0)
-        for i in range(9):
-            for j in range(9):
+        for i in self.nines:
+            for j in self.nines:
                 self.ans[i][j] = next(iter(self.domain[i][j]))
         # self.prettyprint(self.domain)
 
