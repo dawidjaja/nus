@@ -59,7 +59,7 @@ class Sudoku(object):
         q = deque()
         '''
         for i in self.adj[a][b]:
-            q.append(((a, b), i))
+            q.append((i, (a, b)))
 
         '''
         for i in self.nines:
@@ -84,12 +84,18 @@ class Sudoku(object):
         # copy by value
         curDomain = copy.deepcopy(self.domain)
 
+        can = set([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        for (i, j) in self.adj[y][x]:
+            if len(self.domain[i][j]) == 1:
+                can.discard(next(iter(self.domain[i][j])))
+        
         for i in curDomain[y][x]:
-            self.domain = copy.deepcopy(curDomain)
-            self.domain[y][x] = set([i])
-            if (x % 3 != 2 or self.ac()):
-                if (self.dfs(y + (x + 1) // 9, (x + 1) % 9)):
-                    return True
+            if (i in can):
+                self.domain = copy.deepcopy(curDomain)
+                self.domain[y][x] = set([i])
+                if (x % 3 != 2 or self.ac()):
+                    if (self.dfs(y + (x + 1) // 9, (x + 1) % 9)):
+                        return True
         return False
 
     def solve(self):
@@ -98,6 +104,7 @@ class Sudoku(object):
         # don't print anything here. just resturn the answer
         # self.ans is a list of lists
 
+        # self.ac()
         self.dfs(0, 0)
         for i in self.nines:
             for j in self.nines:
