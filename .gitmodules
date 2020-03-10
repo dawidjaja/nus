@@ -1,0 +1,3 @@
+[submodule "cs3211/cs3211-project"]
+	path = cs3211/cs3211-project
+	url = git@github.com:stevenwjy/cs3211-project.git

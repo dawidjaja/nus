@@ -2,99 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a47ae25c-a560-42de-890f-75b2b67b1125" name="Default" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-996660274">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="java" value="571" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JAVA" value="571" />
-        </counts>
-      </usages-collector>
-    </session>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/TSPGraphTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/StdDraw.java" />
-        <option value="$PROJECT_DIR$/src/IApproximateTSP.java" />
-        <option value="$PROJECT_DIR$/src/TSPMap.java" />
-        <option value="$PROJECT_DIR$/src/TSPGraph.java" />
-        <option value="$PROJECT_DIR$/src/TSPGraphTest.java" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-4" />
-    <option name="width" value="1920" />
-    <option name="height" value="1084" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TSP-MST" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TSP-MST" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TSP-MST" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TSP-MST" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1WiLJ72GpZHm9xbf2mvEzkZ8Z6U" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -105,18 +26,6 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="TestNG.TSPGraphTest.testApproximationInGoodRange">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -167,6 +76,7 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -206,10 +116,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TSPGraphTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TSPGraphTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="TSP-MST" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TSPGraphTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <properties />
       <listeners />
@@ -217,7 +128,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TSPGraphTest.testApproximationInGoodRange" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TSPGraphTest.testApproximationInGoodRange" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="TSP-MST" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TSPGraphTest" />
@@ -230,7 +141,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TSPGraphTest.testMST6" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TSPGraphTest.testMST6" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="TSP-MST" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TSPGraphTest" />
@@ -243,7 +154,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TSPGraphTest.testMST7" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="TSPGraphTest.testMST7" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="TSP-MST" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TSPGraphTest" />
@@ -256,7 +167,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <properties />
       <listeners />
@@ -264,20 +176,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
+      <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.TSPGraph" />
       <item itemvalue="TestNG.TSPGraphTest.testMST6" />
       <item itemvalue="TestNG.TSPGraphTest.testMST7" />
       <item itemvalue="TestNG.TSPGraphTest.testApproximationInGoodRange" />
-      <item itemvalue="Application.TSPGraph" />
       <item itemvalue="TestNG.TSPGraphTest" />
     </list>
     <recent_temporary>
@@ -289,6 +201,18 @@
         <item itemvalue="TestNG.TSPGraphTest.testMST6" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -304,85 +228,12 @@
       <workItem from="1542089711632" duration="567000" />
       <workItem from="1542097236388" duration="2141000" />
       <workItem from="1542264559307" duration="9180000" />
+      <workItem from="1579627411462" duration="27000" />
     </task>
     <servers />
   </component>
-  <component name="TestHistory">
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 21m 51s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 22m 37s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 39m 56s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 42m 12s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 43m 04s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 47m 26s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 48m 43s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 50m 12s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 50m 37s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="TSPGraphTest_testApproximationInGoodRange - 2018.11.15 at 17h 52m 51s.xml">
-      <configuration name="TSPGraphTest.testApproximationInGoodRange" configurationId="TestNG" />
-    </history-entry>
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13132000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14989059" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Nl-Palette" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Designer" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info id="Learn" order="8" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3286638" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Properties" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info anchor="right" id="Database" order="9" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -390,7 +241,6 @@
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TSPGraphTest.java</url>
           <line>50</line>
-          <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
@@ -399,65 +249,6 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fiftypoints.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hundredpoints.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/IApproximateTSP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TSPMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="252" column="7" selection-start-line="252" selection-start-column="7" selection-end-line="252" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StdDraw.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="235" column="42" selection-start-line="235" selection-start-column="42" selection-end-line="235" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#40454#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TreeMapPriorityQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TSPGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TSPGraphTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>
