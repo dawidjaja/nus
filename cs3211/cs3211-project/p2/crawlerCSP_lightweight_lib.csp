@@ -1,0 +1,131 @@
+﻿//Lightweight version with implicit locks whenever possible (i.e. not IUT).
+//Uses C# code to simplify for loop states.
+
+//Guaranteed support up to (3,2,3,2)
+
+#import "PAT.Lib.CrawlerUtil";
+
+#define N 2; //number of BULs (assume 1 IBT per BUL)
+#define M 2; //number of CTs per BUL
+#define K 2; //number of URLs to crawl
+#define P 2; //number of index files (assume URL i maps to index file i % P)
+
+//Buffer state
+#define notFull 0;
+#define full 1;
+
+//Crawling thread state
+#define ctRunning 0;
+#define ctWaitBUL 1;
+
+//Index building thread state
+#define ibtRunning 0;
+#define ibtWaitBUL 1;
+
+//URL state
+#define notPresent 0;
+#define inIPW 1;
+#define inBUL 1;
+#define inIBT 1;
+#define inIUT 1;
+
+//Java Monitors
+var lockIUT[P]; //P IUT locks
+
+var BUL[N];
+var IBT[N];
+var CT[M * N];
+
+var URLInIPW[K];
+var URLInBUL[N][K];
+var URLInIBT[N][K];
+var URLInIUT[K];
+
+var duplicateExists = 0;
+
+//checkAndMark() is divided into checkIUT() and addToIPW()
+//CT(): crawlURL() -> checkIUT() -> addToIPW() -> writeToBUL() -> CT();
+//IBT(): readFromBUL() -> writeToIUT() -> removeFromIPW() -> IBT();
+
+ct_crawlURL(i) = []j:{0..K-1} @ ct_enterIUT(i,j);
+
+ct_enterIUT(i,j) = [lockIUT[j%P] == 0]ct_lockIUT.i.j{lockIUT[j%P]++} -> ct_checkIUT(i,j);
+	
+ct_checkIUT(i,j) = 
+	[URLInIUT[j] == inIUT]ct_urlInIUT.i.j{lockIUT[j%P]--} -> ct_crawlURL(i) []
+	[URLInIUT[j] != inIUT]ct_urlNotInIUT.i.j -> ct_addToIPW(i,j); //IUT lock not unlocked here
+
+ct_addToIPW(i,j) = 
+	[URLInIPW[j] == inIPW]ct_addToIPW_duplicate.i.j{lockIUT[j%P]--;} -> ct_crawlURL(i) []
+	[URLInIPW[j] != inIPW]ct_addToIPW_success.i.j{URLInIPW[j] = inIPW; lockIUT[j%P]--;} -> ct_writeToBUL(i,j); //IUT lock only unlocked here
+
+ct_writeToBUL(i,j) = 
+	[CT[i] == ctRunning && BUL[i%N] == full]ct_waitInBUL.i.j{CT[i] = ctWaitBUL} -> ct_writeToBUL(i,j) []
+	[CT[i] == ctRunning && BUL[i%N] == notFull]ct_writeToBULNotFull_success.i.j{URLInBUL[i%N][j] = inBUL;} -> ct_crawlURL(i) []
+	[CT[i] == ctRunning && BUL[i%N] == notFull]ct_writeToBULFull_success.i.j{
+		BUL[i%N] = full;
+		URLInBUL[i%N][j] = inBUL;
+		
+		var k = 0;
+		while (k < M) {
+			if (CT[k*N+i%N] == ctWaitBUL) {
+				CT[k*N+i%N] = ctRunning;
+			}
+			k++;
+		}
+		
+		if (IBT[i%N] == ibtWaitBUL) {
+			IBT[i%N] = ibtRunning;
+		}
+	} -> ct_crawlURL(i);
+
+ibt_readFromBUL(i) =
+	[IBT[i] == ibtRunning && BUL[i] == notFull]ibt_waitInBUL.i{IBT[i] = ibtWaitBUL} -> ibt_readFromBUL(i) []
+	[IBT[i] == ibtRunning && BUL[i] == full]ibt_readFromBUL_success.i{
+		BUL[i] = notFull;
+		
+		var k = 0;
+		while (k < M) {
+			if (CT[k*N+i] == ctWaitBUL) { //check all crawlers using the same BUL
+				CT[k*N+i] = ctRunning;
+			}
+			k++;
+		}
+		
+		//transfer all URLs to IBT
+		var j = 0;
+		while (j < K) {
+			if (URLInBUL[i][j] == inBUL) {
+				URLInBUL[i][j] = notPresent;
+				URLInIBT[i][j] = inIBT;
+			}
+			j++;
+		}
+	} -> ibt_forLoopIUT(i);
+	
+ibt_forLoopIUT(i) = [||j:{0..K-1} @ URLInIBT[i][j] == inIBT]ibt_writeNext.i -> ibt_enterIUT(i, call(forLoopNext, URLInIBT, i, K)) []
+	[&&j:{0..K-1} @ (URLInIBT[i][j] != inIBT)]ibt_exitForLoop.i -> ibt_readFromBUL(i);
+
+ibt_enterIUT(i,j) = [lockIUT[j%P] == 0]ibt_lockIUT.i.j{lockIUT[j%P]++} -> ibt_writeToIUT(i,j);
+
+ibt_writeToIUT(i,j) = 
+	ibt_writeToIUT_success.i.j{
+		if (URLInIUT[j] == inIUT) {
+			duplicateExists = 1;
+		}
+		
+		URLInIBT[i][j] = notPresent;
+		URLInIUT[j] = inIUT;
+		lockIUT[j%P]--;
+	} -> ibt_removeFromIPW(i,j);
+
+ibt_removeFromIPW(i,j) = ibt_removeFromIPW_success.i.j{URLInIPW[j] = notPresent;} -> ibt_forLoopIUT(i);		
+	
+System() = (|||i:{0..N*M-1} @ ct_crawlURL(i)) ||| (|||i:{0..N-1} @ ibt_readFromBUL(i));
+
+#define allURLInIUT (&&i:{0..K-1} @ URLInIUT[i] == inIUT);
+#define duplicate (duplicateExists == 1);
+
+#assert System reaches duplicate;
+#assert System deadlockfree;
+#assert System reaches allURLInIUT;

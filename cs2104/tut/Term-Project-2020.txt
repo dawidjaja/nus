@@ -1,0 +1,64 @@
+Term Project for CS2104
+=======================
+Deadline : 11pm 14th Nov 2020 (Sat)
+
+The 10-min topic presentation that you have selected
+will culminate in a term project for the course.
+While the class presentations are meant to get you started
+on the topic, and for sharing of ideas in the
+class; you shall be investigating more thoroughly 
+in order to give a more comprehensive
+account and evaluation of your chosen topic.
+
+The term project can be done in groups of either
+2-3 students. 
+
+Your submission for the term project will involve
+the following components.
+
+1. Slides in PDF/PPT
+2. A term paper report of between 5-10 A4 pages
+3 (Optional) - A 10-min recorded presentation
+   in case you would like to revise your earlier 
+   class presentation.
+
+=========================================
+Possible Topics as Earlier Announced
+====================================
+Choose a Topic Below
+
+1. All About Monads
+Choose one of these topics
+a) probabilistic functional programming
+    https://hackage.haskell.org/package/probability
+b) Bayesian Inference with Monads
+    ttps://github.com/tweag/monad-bayes#readme
+c) Backtracking, Interleaving, and Terminating Monad Transformers
+   https://hackage.haskell.org/package/logict
+d) Parsec: A convenient DSL for writing parsers.
+e) Using Monads in C++ to Solve Constraints: 1. 
+   The List Monad  https://bartoszmilewski.com/2015/05/11/using-monads-in-c-to-solve-constraints-1-the-list-monad/
+f) Monadic Constructs for Logic Programming
+   https://ieeexplore.ieee.org/document/6299963
+g) Monads for Java developer
+https://medium.com/@afcastano/monads-for-java-developers-part-1-the-optional-monad-aa6e797b8a6e
+
+https://www.youtube.com/watch?v=nkUafcNWiQE
+
+2. What is Category Theory?
+   How is this related to Functors and Monads?
+   
+3. What is a Parser Generator?
+Choose one of the Following framework
+(a) Lex/YACC
+(b) Parsec
+(c) Any other Parser Generators you are familiar?
+
+4. Apache Spark and Language Glues
+
+Choose one of below
+(a) What is Apache Spark?
+(b) Why is Apache Spark implemented in Scala?
+https://www.quora.com/Why-is-Apache-Spark-implemented-in-Scala
+(c) Sparkle : Haskell Binding to Apache Spark
+    https://github.com/tweag/sparkle

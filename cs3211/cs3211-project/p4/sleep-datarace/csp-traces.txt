@@ -1,0 +1,34 @@
+// Fetch and put to the BUL
+[Event 1]ct_selectUrl.0.0 
+[Event 2]ct_lockIUT.0.0
+[Event 3]ct_urlNotInIUT.0.0
+[Event 4]ct_lockIPWAdd.0.0
+[Event 5]ct_addToIPW_success.0.0
+[Event 6]ct_lockBUL.0.0
+[Event 7]ct_writeToBUL_success.0.0
+
+// INTERLEAVE
+[Event 8]ct_selectUrl.0.0
+[Event 9]ct_lockIUT.0.0
+[Event 10]ct_urlNotInIUT.0.0
+
+// INTERLEAVE BACK
+[Event 11]ibt_lockBUL.0
+[Event 12]ibt_readFromBUL_success.0
+[Event 13]ibt_writeNext.0
+[Event 14]ibt_lockIUT.0.0
+[Event 15]ibt_writeToIUT_success.0.0
+[Event 16]ibt_lockIPWWrite.0.0
+[Event 17]ibt_removeFromIPW_success.0.0
+
+// INTERLEAVE
+[Event 18]ct_lockIPWAdd.0.0
+[Event 19]ct_addToIPW_success.0.0
+[Event 20]ct_lockBUL.0.0
+[Event 21]ct_writeToBUL_success.0.0
+[Event 22]ibt_exitForLoop.0
+[Event 23]ibt_lockBUL.0
+[Event 24]ibt_readFromBUL_success.0
+[Event 25]ibt_writeNext.0
+[Event 26]ibt_lockIUT.0.0
+[Event 27]ibt_writeToIUT_success.0.0

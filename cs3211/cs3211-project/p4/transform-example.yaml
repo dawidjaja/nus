@@ -1,0 +1,34 @@
+transformations:
+  - className: "app.App"
+    methodTransformations:
+      - methodName: "doSomething"
+        lineTransforms:
+          - lineNumber: 6
+            code: >
+              System.out.println("[Modified] First Modification at line 6");
+              System.out.println("[Modified] This should appear before logic");
+          - lineNumber: 7
+            code: >
+              System.out.println("[Modified] Second Modification at line 7");
+              System.out.println("[Modified] This should appear after logic");
+
+      - methodName: "someComplicatedLogic"
+        lineTransforms:
+          - lineNumber: 14
+            code: >
+              System.out.println("[Modified] Third Modification");
+              System.out.println("[Modified] This should appear before complicated logic");
+          - lineNumber: 15
+            code: >
+              System.out.println("[Modified] Fourth Modification");
+              System.out.println("[Modified] This should appear after complicated logic");
+      - methodName: "toBeReplaced"
+        replacementCode: >
+          System.out.println("[Replaced]");
+  - className: "app.Main"
+    methodTransformations:
+      - methodName: "main"
+        lineTransforms:
+          - lineNumber: 9
+            code: >
+              transformer.Utils.callUtils();

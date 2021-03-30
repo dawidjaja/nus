@@ -1,0 +1,50 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+application {
+    mainClassName = "urlcrawler.Main"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/plugins-release/' }
+}
+
+dependencies {
+	implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.2'
+    implementation group: 'edu.uci.ics', name: 'crawler4j', version: '4.4.0'
+    implementation group: 'com.github.slugify', name: 'slugify', version: '2.4'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    implementation group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
+}
+
+shadowJar {
+    archiveName = 'Crawler.jar'
+    destinationDir = file("${buildDir}/..")
+}
+
+run {
+	args = ['-input', 'data/url-example.txt',
+            '-output', 'data/result/res.txt',
+            '-event', 'data/csp-traces.txt',
+            '-time', '30s',
+            '-config', 'src/main/resources/config.properties',
+            '-storedPageNum', '1000'
+    ]
+    enableAssertions = true
+}
+
+task cleanCrawlerResults {
+    description = 'Removes the folder that stores crawling result'
+
+    doFirst {
+        delete 'data/result'
+        println 'data/result folder has been deleted'
+    }
+}
+
+run.dependsOn(cleanCrawlerResults)
