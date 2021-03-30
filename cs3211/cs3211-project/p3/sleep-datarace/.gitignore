@@ -1,0 +1,29 @@
+# IDEA files
+/WebCrawler.iml
+/.idea/
+/out/
+/*.iml
+
+# Gradle build files
+/.gradle/
+/build/
+
+# MacOS custom attributes files created by Finder
+.DS_Store
+
+# Java class files
+*.class
+
+# Java JAR files
+*.jar
+!gradle-wrapper.jar
+
+
+bin/
+temp/
+
+data/result/
+data/res.txt
+
+logs/
+*.log

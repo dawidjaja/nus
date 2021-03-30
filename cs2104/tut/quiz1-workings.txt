@@ -1,0 +1,321 @@
+Some comments on Quiz 1
+=======================
+
+  - a number of you mentioned that you needed more time for    
+    the quiz, and some did not complete it. I will 
+	allocate more time for future quizes.
+	
+  - to be fair to everyone, since we did not penalize
+    student for wrong answer, we will add a default
+    mark if you did not attempt a question (assuming you  
+    would have responded randomly)
+
+  - also, since we allowed ghci to be used in Quiz 1; some 
+    students who used it appropriately may have an advantage,
+	as compared to those who did not. In the next quiz, we will 
+    disallow the use of interpreters, so that everyone will
+	be assessed on the same footing
+	
+  - Due to above, I will re-weight Quiz1 to have 1/2 the weight of
+    the next two quizes.
+  
+================================================================================
+1. let x =
+      let x=5 in x+c1
+   in x+x
+   => let x = 5+c1
+      in x+x
+   => (5+c1)+(5+c1)
+   => 10+2*c1
+
+2. let x = c1 in
+   let f y = x+(y+y) in
+     f ((f x)+2)
+   => let f y = c1+(y+y) in
+      f ((f c1)+2)
+   => let f y = c1+(y+y) in
+      let a = (f c1)+2   // 2+1 additions (shared in lazy evaluation)
+      f (a) // 2 additions by f-call
+   => 5 additions
+   
+3. What is immutable data?
+   It is a data that cannot be changed once it is set
+   (Once defined, you cannot change its value. 
+    Set has the same meaning as defined )
+	
+4. What is purely FP?
+   (A) It is based on defining functions without side-effects.
+   though the following is also partially correct:
+     (D) It is based on avoiding the use of global variables.
+   However, (A) => (D), but not vice-versa.
+  
+5. foo 3 c1
+   ==> foo 2 c1*2
+   ==> foo 1 c1*2*2
+   ==> foo 0 c1*2*2*2
+   ==> (c1*2*2*2)+(c1*2*2*2)
+   ==> 16*c1
+   
+6. foo x y =
+      if x=0 then y+y
+      else (foo (x-1) (y*2))
+   Code goes into non-termination for x<0. Hence, termination claim is UNTRUE.
+   
+7. foo g x = g x
+   If we give x:a, then g:a->b
+   The type of foo will be (a->b) -> a -> b
+   
+8.  Consider the following recursive Haskell function.
+   
+   foo x y =
+      if x<=0 then y+y
+      else (foo (x-1) (y*2))
+  All the statements given are true
+    - x is the decreasing parameter
+    - tail-recursive
+	- y is the accumulating paramter
+	- method terminates for all inputs
+	
+9. Consider the following recursive function in Haskell.
+     foo g (x::Int) = g x (foo g x)
+   What is the most general type that can be inferred for this function?
+   
+   Assume:
+    g :: Int -> r -> b
+    foo ::  (Int -> r -> b) -> Int -> b
+   but b=r since we have (foo g z) as input at r. 
+   Hence  foo ::  (Int -> r -> r) -> Int -> r
+
+10. foo g (x::Int) = g x (foo g x)  
+     
+   (foo (\ n r -> n+r) c1)
+    => (\ n r -> n+r) c1 (foo (\ n r -> n+r) c1)
+    =>  c1 + (foo (\ n r -> n+r) c1)
+    =>  c1 + c1 + ..(foo (\ n r -> n+r) c1)
+	
+	This leads to a looping condition.
+
+11. Consider:
+	
+	foo xs g =
+     case xs of
+      [] -> (1,[])
+      y:ys ->
+        let (c,cs)= foo ys g in
+        if g y then (1+c,y:cs)
+        else (c,cs)
+
+    (fst (foo [-1,2,3,0] (\z -> z>0))
+   
+   Here, g = (\z -> z>0) which selects +ve values
+   Base case returns 1.
+   Two positive values in [-1,2,3,0]. 
+   Hence (fst (..)) would return 2+1 = 3
+   
+12. Consider:
+
+   gen_ho f xs n =
+     case xs of
+      [] -> []
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+	  
+   This question (and a number of related) has a typo: where xs should have 
+   been ys. If corrected, it should return
+
+   (gen_ho f [c1,c2,c3] 1)
+   ==> (f c1 1):(f c2 2):(f c3 3):[]
+   
+   The original code (with typo) would instead return an infinite list:
+     (gen_ho f [c1,c2,c3] 1)
+      ==> (f c1 1):(f c1 2):(f c1 3): ...
+   
+   Hence, we will also accept "None of the Given Answers"
+   in addition to (B)
+   
+   
+13:
+   
+   gen_ho f xs n =
+     case xs of
+      [] -> []
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+   
+   What would you do to this function definition to ensure that it will be correctly inferred byHaskell to have the type
+   ((a->Int->b) -> [a] -> Int -> [b])
+   
+  A simple way to ensure this is to add n::Int. This
+  should be sufficient to obtain above type.
+  
+14:
+  Consider the following higher-order function in Haskell.
+    gen_ho f xs n =
+      case xs of
+       [] -> []
+       y:ys -> (f y n):(gen_ho f xs (n+1))
+    What would you do to this function definition to ensure that it will be correctly inferred by Haskell to have the type ((a->Int->a) -> [a] -> Int -> [a])
+	
+	Adding f::a ->Int->a
+	would force result of f to be same as its first parameter, leading
+	to the desired type.
+	
+15:
+    gen_ho f xs n =
+     case xs of
+      [] -> []
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+	  // typo where xs -> ys
+
+    Which of the following higher-order function can be used to implement this
+    gen_ho function using just a single call to the selected higher-order function ?
+	The closest is map and foldr but there is an extra
+	accumulating parameter.
+	
+    With the typo:
+       None of the Above	   
+
+	Without the typo, it is still impossible to handle accumulating parameter
+	using just a single map whose normal defn is:
+	  map f xs = case xs of   
+	    [] -> []
+		x:xs -> (f x):(map f xs)
+	However, with foldr, we can get:
+		foldr f b xs = case xs of   
+	    []   -> b
+		x:xs -> (f x (foldr f b xs))
+    We would need the recursion to return (n,res) where
+	n is the expected accumulating parameter values.
+
+	This would require another List.length call to figure out
+	the length of the list, as base. Hence, two calls are 
+	required which violate the "single call restriction".
+	
+16, gen_ho f xs n =
+      case xs of
+      [] -> []
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+	  // typo where xs -> ys
+		  
+	 Since list [1..] is infinte, the computation would
+	 involve an infinite outcome.
+	    (f 1 n):(f 2 n+1):(f 3 n+2):...
+	 If we stick with the original typo, we will obtain instead:
+	    (f 1 n):(f 1 n+1):(f 1 n+2):...
+	 We will also accept "None of the Given Answer" for this question.
+
+17.
+	 let a = array (1,10) ((1,1):[(i, if mod i 2==0 then a!(i-1) else i) | i<- [1..10]])
+	 
+	 evaluation of list yields: [(1,1),(1,1),(2,1),(3,3),(4,3),(5,5),(6,5)..]
+	 
+	 Hence a!6 yields 5.
+
+	
+18. Given   
+      let a = array (1,10) [(i, if mod i 2==0 then a!(i-1) else i) | i <-[1..10]])
+  
+  	evaluation of list yields: [(1,1),(2,1),(3,3),(4,3),(5,5),(6,5)..]
+	Hence a!6 yields 5.
+	
+19. let a = array (1,10) [(i, if mod i 2==0 then a!(i-1) else i) | i <-[1..10]])
+
+    The following are true
+	- monolithic array (build in one step)
+	- lazily evaluated
+	- It contains exactly 10 array entries
+	
+   What is NOT true is:
+    "It will return an error due to absence of base case"
+	This is because the recursive scenario below still returns base values directly
+	using "if mod i 2==0 then a!(i-1) else i." for odd values.
+	If the array starts from even number, we will have out-of-bounds 
+	array errors.
+ 
+20. Consider the list comprehension
+     [ g x y z | x in e1, y in e2, z in e3]
+    Assume you have a filter condition (f x y)
+    which you would like to add to the above list
+    comprehension. Where would be the best place
+    to put this filter?
+
+   Filter should be placed as early as possible. Since 
+   (f x y) involves x,y; the earliest one should place it
+   is immediaately after e2.
+   
+21. Consider the list comprehension:
+      [ (x,y) | x in e1, y in e2, z in e3]
+    Which of the statements below is NOT true?
+	
+	As "z" is not used in the outcome, it is not
+    strictly an output generator. However, it 
+    does affect the result. For example, if you use 
+    (z in []), it will lead to [] being returned since
+	false being the case for all list iteration.
+	
+	Hence below is NOT true.
+	The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.
+
+22. Consider the following function
+      foo xs g =
+       case xs of
+         [] -> (1,[])
+         y:ys ->
+          let (c,cs)= foo ys g in
+          if g y then (1+c,y:cs)
+          else (c,cs)
+    One could re-implement the call (foo xs g)
+    by an equivalent expression
+       (foldr e1 e2 xs) which has the following type:
+    foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+    Which of the following is/are correct? 
+	
+	Use both below
+	  e2 = (1,[])
+	  e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)
+
+23 One could re-implement the call
+      (foo xs g)
+   by an equivalent expression (foldl e2 e1 xs).
+   Note that we are using foldl
+   with the following type here:
+      foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+   Which of the following is/are correct? This is a multiple response answer where all correctanswer must be given.
+   
+   Use both below
+     e1 = (1,[])
+	 e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)
+
+24. Consider the following Haskell function.
+      foo g = (g 1, g "hello")
+    Is a user annotated type possible for this function? Justify your answer by explaining why it ispossible or otherwise.
+	
+	Generally, parameters are monomorphic type. However, it is 
+	possible to use a polymorphic type annoation g::forall a. a-> b.
+	which would allow the above code to compile.
+	
+
+25.	Consider the following recursive function in Haskell.
+      foo g (x::Int) = g x (foo g x)
+    It is not possible to implement the factorial function using this higher-order function since there isn't a base case. Is this statement true or false.
+    Please qualify your answer.
+	
+	This statement is false because g can encode the base case of
+	your recursion. For example:
+	
+	 g x r = if x=0 then ..
+	                else
+					
+	However, to obtain factorial, we cannot use "x" since this
+	is unchanged in the recursion.
+	
+	We may have to use instead:
+	
+		 g x r = \ n -> if n=0 then ..
+	                    else
+	
+	and rely on this extra "n" parameter that can change its value
+	to support factorial computation.
+	
+	
+	
+   
+   

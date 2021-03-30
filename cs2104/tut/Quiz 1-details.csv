@@ -1,0 +1,457 @@
+,,,,,,,"Let Binding
+
+Consider the Haskell expression where c1 is some constant.
+
+    let x =
+
+     let x=5 in x+c1
+
+    in x+x
+
+ 
+
+ What result will be returned by the above expression under lazy evaluation?",,"Let Binding
+
+Consider the Haskell expression where c1 is some constant.
+
+   
+
+    let x = c1 in
+
+    let f y = x+(y+y) in
+
+      f ((f x)+2)
+
+ How many additions will be performed by above code fragment under lazy evaluation?",,"Immutable Data Structure
+
+What is an immutable data ?",,What is purely functional programming? Choose the best answer below.,,"Recursion
+
+Consider the following recursive Haskell function.
+
+   
+
+   foo x y =
+
+      if x<=0 then y+y
+
+      else (foo (x-1) (y*2))
+
+What result will be returned by foo 3 c1, while c1 is some integer constant?",,"Non-Termination
+
+Consider the following recursive Haskell function.
+
+   
+
+   foo x y =
+
+      if x=0 then y+y
+
+      else (foo (x-1) (y*2))
+
+Does  this function always  terminates for all inputs, assuming the presence of infinite runtime resource?",,"Type Inference
+
+Consider the following Haskell function.
+
+   
+
+   foo g x = g x
+
+Which of the following is the most general type of this function that would be inferred by Hindley-Milner type inference system used in the Haskell compiler?",,"Recursion
+
+Consider the following recursive Haskell function.
+
+   
+
+   foo x y =
+
+      if x<=0 then y+y
+
+      else (foo (x-1) (y*2))
+
+Which of the following is NOT correct about this method definition?",,"Recursion
+
+Consider the following recursive function in Haskell.
+
+    foo g (x::Int) = g x (foo g x)
+
+What is the most general type that could be inferred for this function?
+
+ ",,"Recursion
+
+Consider the following recursive function in Haskell.
+
+    foo g (x::Int) = g x (foo g x)
+
+What result would be returned by (foo (\ n r -> n+r) c1) where c1 is a symbolic constant.",,"Higher-Order Function
+
+Consider the following simple higher-order function
+
+foo xs g =
+
+  case xs of
+
+   []   -> (1,[])
+
+   y:ys ->
+
+    let (c,cs)= foo ys g in
+
+      if g y then (1+c,y:cs)
+
+      else (c,cs)
+
+What value is returned by the expression (fst (foo [-1,2,3,0] (\z -> z>0)) ?",,"Higher-Order Functions
+
+ 
+
+Consider the following higher-order function in Haskell.
+
+gen_ho f xs n =
+
+    case xs of
+
+      [] -> []
+
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+
+What is computed by the expression (gen_ho f [c1,c2,c3] 1)?",,"Typing
+
+ 
+
+Consider the following higher-order function in Haskell.
+
+gen_ho f xs n =
+
+    case xs of
+
+      [] -> []
+
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+
+What would you do  to this function definition  to ensure that it will be correctly inferred by Haskell to have the type ((a->Int->b) -> [a] -> Int -> [b]) ?",,"Typing
+
+ 
+
+Consider the following higher-order function in Haskell.
+
+gen_ho f xs n =
+
+    case xs of
+
+      [] -> []
+
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+
+What would you do  to this function definition  to ensure that it will be correctly inferred by Haskell to have the type ((a->Int->a) -> [a] -> Int -> [a]) ?",,"Higher-Order Function
+
+Consider the following higher-order function in Haskell.
+
+gen_ho f xs n =
+
+    case xs of
+
+      [] -> []
+
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+
+Which of the following higher-order function can be used to implement this gen_ho function using just  a single call to the selected higher-order function ?",,"Higher-Order Function
+
+Consider the following higher-order function in Haskell.
+
+gen_ho f xs n =
+
+    case xs of
+
+      [] -> []
+
+      y:ys -> (f y n):(gen_ho f xs (n+1))
+
+What would be returned by the call (gen_ho f [1..] n) ?
+
+ ",,"Array
+
+Consider the following Haskell expression
+
+let a = array (1,10) ((1,1):[(i, if mod i 2==0 then a!(i-1) else i) | i <- [1..10]]) 
+
+What is the value of a!6 ?",,"Array
+
+Consider the following Haskell expression
+
+let a = array (1,10) [(i, if mod i 2==0 then a!(i-1) else i) | i <- [1..10]]) 
+
+What is the value of a!6 ?",,"Array
+
+Consider the following Haskell expression
+
+let a = array (1,10) [(i, if mod i 2==0 then a!(i-1) else i) | i <- [1..10]]) 
+
+Which of the following is NOT true about this particular array?",,"List comprehension
+
+Consider the list comprehension
+
+ [ g x y z | x in e1, y in e2, z in e3]
+
+ 
+
+Assume you have a filter condition (f x y)
+
+which you would like to add to the above list 
+
+comprehension. Where would be the best place
+
+to put this filter?",,"List Comprehension
+
+Consider the list comprehension:
+
+  [ (x,y) | x in e1, y in e2, z in e3]
+
+Which of the statements below is NOT true?",,"Higher-Order Function
+
+Consider the following function
+
+foo xs g =
+
+  case xs of
+
+   []   -> (1,[])
+
+   y:ys ->
+
+    let (c,cs)= foo ys g in
+
+      if g y then (1+c,y:cs)
+
+      else (c,cs)
+
+One could re-implement the call (foo xs g) by an equivalent expression (foldr e1 e2 xs) which has the following type:
+
+  foldr :: Foldable t => (a -> b -> b) -> b -> t a -> b
+
+ 
+
+ 
+
+Which of the following is/are correct?",,,,,,"Higher-Order Function
+
+Consider the following function
+
+foo xs g =
+
+  case xs of
+
+   []   -> (1,[])
+
+   y:ys ->
+
+    let (c,cs)= foo ys g in
+
+      if g y then (1+c,y:cs)
+
+      else (c,cs)
+
+One could re-implement the call (foo xs g) by an equivalent expression (foldl e2 e1 xs). Note that we are using foldl with  he following type here:
+
+       foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
+
+Which of the following is/are correct? This is a multiple response answer where all correct answer must be given.",,,,,"Type Annotation
+
+Consider the following Haskell function.
+
+   
+
+   foo g = (g 1, g ""hello"")
+
+Is a user annotated type possible for this function?  Justify your answer by explaining why it is possible or otherwise.",,,"Recursion
+
+Consider the following recursive function in Haskell.
+
+    foo g (x::Int) = g x (foo g x)
+
+It is not possible to implement the factorial function using this higher-order function since there isn't a base case. Is this statement true or false.
+
+Please qualify your answer.",,
+Student ID,Total Marks,Duration,Start Time,Submit Time,Status,Comment,Q1 Answer,Q1 Mark,Q2 Answer,Q2 Mark,Q3 Answer,Q3 Mark,Q4 Answer,Q4 Mark,Q5 Answer,Q5 Mark,Q6 Answer,Q6 Mark,Q7 Answer,Q7 Mark,Q8 Answer,Q8 Mark,Q9 Answer,Q9 Mark,Q10 Answer,Q10 Mark,Q11 Answer,Q11 Mark,Q12 Answer,Q12 Mark,Q13 Answer,Q13 Mark,Q14 Answer,Q14 Mark,Q15 Answer,Q15 Mark,Q16 Answer,Q16 Mark,Q17 Answer,Q17 Mark,Q18 Answer,Q18 Mark,Q19 Answer,Q19 Mark,Q20 Answer,Q20 Mark,Q21 Answer,Q21 Mark,Q22 Answer,Q22 Answer,Q22 Answer,Q22 Answer,Q22 Answer,Q22 Mark,Q23 Answer,Q23 Answer,Q23 Answer,Q23 Answer,Q23 Mark,Q24 Answer,Q24 Rationale,Q24 Mark,Q25 Answer,Q25 Rationale,Q25 Mark
+e0199464,22,24 mins 56 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,"There are incompatible types for function g. In the first element in the tuple, g takes an Int/Integer but in the second element, g takes a [Char].",0,True,"foo creates an infinite structure, so it will not be able to terminate to give the factorial value.",0
+a0125431,18,25 mins 2 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation xs::[Int],0,Add type annotation xs::[Int],0,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,,,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,you can,1,False,you can use take to lazily take the relevant elements,1
+e0321479,15,25 mins ,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,3,1,None of the Given Answers,0,None of the Given Answers,0,Add type annotation f::a->Int->a,1,None of the Given Answers,1,"[f 1 1, f 2 2, .. , f n n]",0,5,1,None of the Given Answers,0,It will return an error due to absence of base case.,1,immediately before generator (x in e1),0,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,e1 = [],,,,0,,,,,,
+e0308986,16,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,None of the Given Answers,1,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (z in e3),0,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,"e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,,True,,0
+e0321489,15,24 mins 58 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,None of the Given Answers,0,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 1, f 2 2, .. ]",0,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,e2 = [],,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,The user can use an annotation.,1,True,The function will never terminate since there is no base case,0
+e0014942,22,25 mins ,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,None of the Given Answers,0,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,None of the Given Answers,0,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,None of the Given Answers,1,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,,,,False,The base case can be provided by the function g. If g terminates upon,1
+e0031874,15,27 mins 1 sec,30-Sep-2020 01:29 PM,30-Sep-2020 01:56 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,"[(f c3 1),(f c2 2),(f c1 3)]",0,Do Nothing,0,Add type annotation f::a->Int->a,1,map,0,"[f 1 n, f 2 (n+1), .. , f n (n+n-1)]",0,5,1,6,0,It will return an error due to absence of base case.,1,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,"It is unclear what the signature of g is, so a user may wish to clarify it with type annotations",1,False,,1
+e0105028,9,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+c1,0,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,True,0,,,This method makes use of tail-recursion,0,(Int -> b -> b) -> Int -> b,1,,,0,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,None of the Given Answers,0,None of the Given Answers,0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,6,0,6,0,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,,,,,,,,,,,,,,,,
+e0148803,18,24 mins 49 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:53 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,True,0,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,4,0,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])","e1 = \ y r -> if g y then (1+(fst r),tail r) else r","e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,"The  g function takes in a parameter that can be either a string or an integer. Hence, the user can specify the type of foo as (a-> b) -> (b, b) where a and b are generic types.",1,True,"In order for this higher-order function to implement the factorial function, you need to specify a base case when x = 0 and also make sure that x is decremented before it is passed as an argument to the recursive call for foo.",0
+e0148862,20,27 mins ,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,,0,,,
+e0175464,10,24 mins 58 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on the concept of utilizing higher-order functions,0,16 * c1,1,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,None of the Given Answers,0,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,None of the Given Answers,0,None of the Given Answers,0,None of the Given Answers,0,immediately after generator (x in e1),0,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])","e1 = \ y r -> if g y then (1+(fst r),tail r) else r","e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)","e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,False,should use algebraic data type,0,True,"there is no base case here to x being the ""counter"" will keep increasing/decreasing so there's no termination",0
+e0176307,14,25 mins 1 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,None of the Given Answers,0,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation n::Int,0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,,,,,,,,,,,
+e0176899,13,24 mins 59 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,True,0,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,None of the Given Answers,0,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,,,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,,,,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,False,,0,False,,1
+e0177252,14,25 mins ,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,,,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation xs::[Int],0,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,None of the Given Answers,0,None of the Given Answers,0,immediately after generator (y in e2),1,None of the Given Answers,0,,,,,,,,,,,,,,,,,
+e0177355,16,25 mins 1 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,6,0,None of the Given Answers,0,Its contents are lazily evaluated,0,immediately after generator (y in e2),1,The generator (z in e3) can be re-positioned without changing the functional correctness of this expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,e1 = [],,"e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,,True,,0
+e0196674,19,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,foldl,0,None of the Given Answers,0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,False,g is fixed.noth,0,False,fact n = foo (\x y -> if x==0 then 1 else x*y) n,1
+e0196690,22,27 mins 1 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,None of the Given Answers,1,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,Yes it is possible to annotate g as either Int or String. Thus it is possible to annotate the function foo.,1,True,"The recursion (foo g x) on the right hand side doesn't change its parameters. So it will continue to expand to g x (g x (g x (...))) forever.
+
+
+
+It is impossible to calculate factorial since factorial needs to reduce its parameter.",0
+e0196695,24,25 mins 1 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,This method has an accumulating parameter.,0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,G can not take in both Int and [,0,False,Can define base case in g ,1
+e0196712,20,24 mins 59 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,False,"Because g must receive both 1 and ""hello"", which is not possible, unless we declare a new data and use a constructor.",0,False,"The base case can be when x == 0, then return a base case, so foo g x is not evaluated anymore (because lazy)",1
+e0196851,16,27 mins 1 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,None of the Given Answers,0,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,,0,,,,True,,0
+e0202795,10,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,None of the Given Answers,0,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,3*c1,0,3,1,None of the Given Answers,0,Add type annotation xs::[Int],0,Do Nothing,0,foldl,0,"[f 1 n, f 2 (n+1), .. , f n (n+n-1)]",0,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r","e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,,,,,,,,,
+e0253750,24,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Do Nothing,0,Add type annotation f::a->Int->a,1,None of the Given Answers,1,"[f 1 n, f 2 (n+1), .. , f n (n+n-1)]",0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,,1,False,"False because the function evaluation in haskell is lazy, i.e. if the output of g is not determined by the second param, it will not try to evaluate it, then it can terminate possibly.",1
+e0271169,18,24 mins 51 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,None of the Given Answers,0,Add type annotation xs::[Int],0,Add type annotation xs::[Int],0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,"We can define the type of g in this case, therefore we can define f.",1,False,The base case can be in g.,1
+e0273831,14,27 mins 1 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,4,0,It is a data that cannot be changed once it is set,1,None of the Given Answers,0,16 * c1,1,False,1,None of the Given Answers,1,This method makes use of tail-recursion,0,(Int -> b -> b) -> Int -> b,1,4*c1,0,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,,,,,,,,,,,,,,,,
+e0302115,14,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldl,0,None of the Given Answers,0,None of the Given Answers,0,5,1,Its contents are lazily evaluated,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,False,,0,False,Infinite loopNo rationale provided,1
+e0303296,24,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,"It is not possible since the function g must take in a parameter of type Num and a parameter of type [Char], which is impossible",0,False,"we can insert the base case into g
+
+foo (\x y -> if x==0 then 1 otherwise x*y) n
+
+gives n!",1
+e0309142,19,24 mins 59 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,None of the Given Answers,0,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,7,0,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,,0,False,g cannot tak ein more than one data type!,0,True,"The above foo method runs into an infinite loop, so factorial cannot be implemented here since a base case cannot be defined.",0
+e0309341,17,26 mins 59 sec,30-Sep-2020 01:29 PM,30-Sep-2020 01:56 PM,Submitted,,10+2*c1,1,4,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b) -> Int -> b,0,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 1, f 2 2, .. ]",0,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) can be re-positioned without changing the functional correctness of this expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,Yes. There can be a more general type that both String and Num derieved from,1,True,,0
+e0309846,16,25 mins ,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,map,0,"[f 1 n, f 2 (n+1), .. , f n (n+n-1)]",0,None of the Given Answers,0,5,1,Its contents are lazily evaluated,0,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,False,n,0,False,This function foo can terminate. They key is feed in an appropriate g and appropriate x.,1
+e0309879,14,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,This method makes use of tail-recursion,0,(Int -> b) -> Int -> b,0,None of the Given Answers,1,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation f::a->Int->a,0,Add type annotation n::Int,0,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])","e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,,1,False,No rationale provided,1
+e0310054,9,25 mins 1 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:53 PM,Submitted,,None of the Given Answers,0,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> Int -> Int) -> Int -> Int,0,None of the Given Answers,1,None of the Given Answer,0,None of the Given Answers,0,None of the Given Answers,0,Do Nothing,0,foldl,0,None of the Given Answers,0,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,None of the Given Answers,0,,,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r","e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,False,,0,,,
+e0310197,17,24 mins 57 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation n::Int,0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,,,,None of the Given Answers,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,"If g is of type x -> y, where x is a Data that can be either String | Int, then it is possible.",1,False,It is possible due to lazy evaluation of parameters to g,1
+e0310340,22,24 mins 52 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,"because g appears to take in possibly both Num type and String type, it would not be possible to provide a user annotated type",0,False,g can define a base case so that it would eventually terminate,1
+e0310376,14,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,6,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation f::a->Int->a,0,Add type annotation n::Int,0,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,e2 = [],,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,e1 = [],,,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,True,,1,,,
+e0310551,20,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,This method has a decreasing parameter which terminates the loop,0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (z in e3),0,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,The values accepted by function is different,0,,,
+e0310661,21,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,"g cannot take in both Num  and [Char], therefore the compiler would throw  a type error",0,False,fact can be imple,1
+e0310666,16,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,None of the Given Answers,1,None of the Given Answers,1,None of the Given Answers,0,None of the Given Answers,1,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,None of the Given Answers,0,None of the Given Answers,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,e1 = [],,,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,False,Different types,0,False,"We can specify the base case inside g, the function.
+
+ 
+
+There are typos - I assume there are errors because i act as a compiler",1
+e0310670,18,24 mins 56 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation xs::[Int],0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,None of the Given Answers,0,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,e1 = [],,"e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,g can take in both int and String values. It is possible,1,True,the base case is required for termination,0
+e0310741,9,27 mins ,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,,,,,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,,,,,,,Add type annotation n::Int,0,,,None of the Given Answers,0,5,1,,,,,,,,,,,,,,,,,,,,,,,,,
+e0310823,20,24 mins 8 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:49 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately before generator (x in e1),0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,Because g takes in two different types of inputs (Num and [Char] in this case).,0,False,The base case could be implemented on function g to stop calling itself.,1
+e0311253,15,25 mins ,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,True,0,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. , f n (n+n-1)]",0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,,,,,e1 = [],,"e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)","e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,,,,,,
+e0313493,18,24 mins 47 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,False,"In the body of the function, we see that foo is called with an argument 1 and also with an argument ""hello"", so this means g must be a function that accepts arguments of type Int and [Char], but this is impossible because an expression can't be of type Int and [Char] at the same time.",0,True,"The value of x does not change and since there is no base case, the function will recurse infinitely.",0
+e0313514,20,24 mins 59 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,None of the Given Answers,0,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,"Yes, the function can take in an sum type of [Char] and Num, and return some other type.",1,True,"foo g x will always keep getting called, so it'll always end up infinite loop no matter what",0
+e0313524,18,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,None of the Given Answers,0,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,None of the Given Answers,0,e2 = [],,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,it is possib,1,,,
+e0313577,21,24 mins 57 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:53 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on using functions with multiple inputs and multiple outputs.,0,8 * c1,0,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,Yes I think it is possible,1,False,I think it is possible to create factorial using another function.,1
+e0313722,16,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,4*c1,0,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,6,0,6,0,None of the Given Answers,0,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,,,,True,Base Case isn't defined,0
+e0313730,21,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,None of the Given Answers,1,"[f 1 n, f 2 (n+1), .. ]",1,None of the Given Answers,0,None of the Given Answers,0,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,,,,True,"Since x never decrements, we can never have a terminating condition within g.",0
+e0315854,14,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Do Nothing,0,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 1, f 2 2, .. ]",0,4,0,5,1,It contains exactly 10 array entries,0,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,,,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r","e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,,0,False,"Possible to implement factorial by
+
+fact n = foo (\x y -> x*y) 1
+
+No rationale provided",1
+e0315887,16,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,None of the Given Answers,0,None of the Given Answers,1,2,0,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,None of the Given Answers,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,e1 = [],,,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,,,,False,,1
+e0315913,10,25 mins 1 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(a -> b -> b) -> a -> b,0,4*c1,0,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation f::a->Int->a,1,map,0,None of the Given Answers,0,7,0,7,0,It will return an error due to absence of base case.,1,immediately after generator (z in e3),0,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])","e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)","e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,,,,True,recursions need base case. ,0
+e0318636,14,25 mins ,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,4,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b -> b) -> Int -> b,1,2*c1,0,1,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,,,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,,,,,,,,,,,,,,,
+e0322732,13,22 mins 57 sec,30-Sep-2020 01:36 PM,30-Sep-2020 01:58 PM,Submitted,,10+2*c1,1,3,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b) -> Int -> b,0,None of the Given Answers,1,1,0,f (f c1 1) (f (f c2 2) (f c3 3)),0,Add type annotation f::a->Int->a,0,Add type annotation n::Int,0,foldl,0,"[f 1 n, f 2 (n+1), .. , f n (n+n-1)]",0,5,1,5,1,It contains exactly 10 array entries,0,immediately after generator (y in e2),1,The generator (z in e3) can be re-positioned without changing the functional correctness of this expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,,1,True,Recurssion will not terminate due to the lack of a base case,0
+e0322783,23,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,None of the Given Answers,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,"yes, g can implement the type class where one for input type int, and other for String",1,True,"yes, it wont terminate No rationale provided",0
+e0322808,13,27 mins ,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,4  * c1,0,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,2*c1,0,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 1, f 2 2, .. ]",0,6,0,6,0,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,,,,,,,,,,,
+e0324077,21,24 mins 37 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,None of the Given Answers,1,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,"No it is not possible. The function `g` takes both an Int type and a String type. In this context, a function cannot simultaneoulsy take two different types as input",0,True,"Furtheremre , the recursive to foo g x also does not reduce the count of x.
+
+ 
+
+Recursive functions in general requires a base case.",0
+e0324531,18,24 mins 13 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,4,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Do Nothing,0,Add type annotation n::Int,0,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,None of the Given Answers,0,None of the Given Answers,0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,e1 = [],,,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",0,True,NO problem with the expression.No rationale provided,1,False,The terminating codition can be implemented by g,1
+e0325390,19,27 mins 1 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:53 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])","e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,,"e1 = (1,[])
+
+ ",,,0,False,No as g can take in any generic value (Int or String) and return a generic value,0,False,Can include in gNo rationale provided,1
+e0325493,21,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldl,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (z in e3),0,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,,,,False,"We can implement a base case in g, to tereminate and ignore the remaing parama",1
+e0325702,12,24 mins 59 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,4,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,(a->a) -> a -> a,0,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,2*c1,0,0,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,filter,0,"[f 1 n, f 2 (n+1), .. ]",1,7,0,7,0,It will return an error due to absence of base case.,1,immediately after generator (z in e3),0,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,e2 = [],,"e1 = \ y r -> if g y then (1+(fst r),tail r) else r",,,0,e1 = [],,"e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,False,The user cannot annotate because g can only be the most general type possible,0,True,,0
+e0341286,,--,,,Not Taken,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+e0389223,19,24 mins 59 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,None of the Given Answers,0,Add type annotation n::Int,1,Add type annotation n::Int,0,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,,,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,"e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,"Yes, we can make use of algebraic data types to provide an annotated type, something like a Either.",1,True,"No time
+
+ ",0
+e0406988,20,26 mins 37 sec,30-Sep-2020 01:28 PM,30-Sep-2020 01:55 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It contains exactly 10 array entries,0,immediately after generator (z in e3),0,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,True,RankNTypes permits scoping type variables,1,True,No base case is provided. As such the function will branch indefinitely.,0
+e0407889,21,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:52 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,2,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,foldr,0,"[f 1 1, f 2 2, .. ]",0,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) is redundant since its absence does not affect the  functional correctness of the expression.,1,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,,,,False,"due to WHNF and lazy eval, ff g contains base case (x == 0) , then the function will work.",1
+e0411160,13,25 mins 1 sec,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,(Int -> Int -> Int) -> Int -> Int,0,2*c1,0,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation xs::[Int],0,Add type annotation f::a->Int->a,1,map,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,5,1,It will return an error due to absence of base case.,1,immediately after generator (z in e3),0,The generator (z in e3) has the effect of a filter condition.,0,e2 = [],"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,e1 = [],"e1 = (1,[])
+
+ ","e2 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,0,,,,True,,0
+e0417703,23,25 mins ,30-Sep-2020 01:25 PM,30-Sep-2020 01:50 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,8 * c1,0,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,,1,False,It is because of lazy evaluation.,1
+e0417755,20,25 mins 1 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,5,1,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,None of the Given Answers,0,False,1,None of the Given Answers,1,"This method terminates on all of its inputs, assuming unlimited computing resources.",0,None of the Given Answers,0,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation f::a->Int->a,1,None of the Given Answers,1,None of the Given Answers,0,5,1,5,1,It is a monolithic array that is built in one step.,0,immediately after generator (y in e2),1,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,,1,,,
+e0426126,20,24 mins 58 sec,30-Sep-2020 01:26 PM,30-Sep-2020 01:51 PM,Submitted,,10+2*c1,1,None of the Given Answers,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,False,1,None of the Given Answers,1,None of the Given Answers,1,(Int -> b -> b) -> Int -> b,1,None of the Given Answers,1,3,1,"[(f c1 1),(f c2 2),(f c3 3)]",1,Add type annotation n::Int,1,Add type annotation n::Int,0,map,0,"[f 1 n, f 2 (n+1), .. ]",1,None of the Given Answers,0,5,1,None of the Given Answers,0,None of the Given Answers,0,The generator (z in e3) has the effect of a filter condition.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,True,Use tuple product type. No rationale provided,1,False,You can have g = (\x y -> if x == 0 then 1 else x * y) No rationale provided,1
+e0426321,15,25 mins 1 sec,30-Sep-2020 01:27 PM,30-Sep-2020 01:53 PM,Submitted,,10+2*c1,1,4,0,It is a data that cannot be changed once it is set,1,It is based on defining functions without side-effects.,1,16 * c1,1,True,0,None of the Given Answers,1,None of the Given Answers,1,(Int -> Int -> Int) -> Int -> Int,0,None of the Given Answers,1,None of the Given Answer,0,"[(f c1 1),(f c2 2),(f c3 3)]",1,None of the Given Answers,0,Add type annotation f::a->Int->a,1,foldr,0,"[f 1 n, f 2 (n+1), .. ]",1,5,1,7,0,Its contents are lazily evaluated,0,immediately after generator (z in e3),0,You can add yet another copy of the generator (z in e3) without changing the functional correctness of the expression.,0,,"e2 = (1,[])",,"e1 = \ y (c,cs) -> if g y then (1+c,y:cs) else (c,cs)",,2,,"e1 = (1,[])
+
+ ",,"e2 = \ y (c,cs) -> if g y then (1+c,cs++[y]) else (c,cs)",2,False,It would cause an error since no instace of Num [Char].,0,True,"Since no base case, the function would not terminate.",0
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

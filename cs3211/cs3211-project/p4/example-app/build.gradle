@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    archiveName = 'app.jar'
+    destinationDir = file("${buildDir}/../..")
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes(
+                'Main-Class' : 'app.Main'
+        )
+    }
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

@@ -1,0 +1,90 @@
+transformations:
+  - className: "urlcrawler.indexer.IndexBuildingThread"
+    methodTransformations:
+      - methodName: "run"
+        lineTransforms:
+          - lineNumber: 27
+            code: >
+              transformer.DelayManager.delayForBothIBTEvents(11, 23);
+              transformer.DelayManager.delayForBothIBTEvents(12, 24);
+          - lineNumber: 33
+            code: >
+              transformer.DelayManager.delayForBothIBTEvents(13, 25);
+          - lineNumber: 35
+            code: >
+              if (transformer.ThreadCounter.stopOnceIBT()) {
+                stop();
+              }
+          - lineNumber: 35
+            code: >
+              transformer.DelayManager.delayForEvent(22);
+  - className: "urlcrawler.crawler.jsoup.Crawler"
+    methodTransformations:
+      - methodName: "run"
+        lineTransforms:
+          - lineNumber: 52
+            code: >
+              if (Thread.currentThread().getName().equals("0")) {
+                transformer.DelayManager.delayForBothCTEvents(1, 8);
+              } else {
+                return;
+              }
+          - lineNumber: 64
+            code: >
+              if (transformer.ThreadCounter.stopOnceCT()) {
+                stop();
+              }
+      - methodName: "visit"
+        lineTransforms:
+          - lineNumber: 117
+            code: >
+              urlQueue.poll();
+      - methodName: "addToBufferedUrlList"
+        lineTransforms:
+          - lineNumber: 130
+            code: >
+              transformer.DelayManager.delayForBothCTEvents(6, 20);
+              transformer.DelayManager.delayForBothCTEvents(7, 21);
+  - className: "urlcrawler.data.UrlSupplier"
+    methodTransformations:
+      - methodName: "consume"
+        lineTransforms:
+          - lineNumber: 28
+            code: >
+              if (true) {
+                return new urlcrawler.data.Url("https://www.google.com/", null, null);
+              }
+  - className: "urlcrawler.indexer.IndexedUrlTree"
+    methodTransformations:
+      - methodName: "writeContents"
+        lineTransforms:
+          - lineNumber: 80
+            code: >
+              transformer.DelayManager.delayForBothIBTEvents(14, 26);
+          - lineNumber: 82
+            code: >
+              transformer.DelayManager.delayForBothIBTEvents(15, 27);
+          - lineNumber: 85
+            code: >
+              if (Thread.currentThread().getName().equals("0")) {
+                transformer.DelayManager.delayForEvent(16);
+              }
+          - lineNumber: 86
+            code: >
+              if (Thread.currentThread().getName().equals("0")) {
+                transformer.DelayManager.delayForEvent(17);
+              }
+      - methodName: "checkAndMarkUrl"
+        lineTransforms:
+          - lineNumber: 171
+            code: >
+              transformer.DelayManager.delayForBothCTEvents(2, 9);
+          - lineNumber: 173
+            code: >
+              transformer.DelayManager.delayForBothCTEvents(3, 10);
+          - lineNumber: 182
+            code: >
+              transformer.DelayManager.delayForBothCTEvents(4, 18);
+          - lineNumber: 184
+            code: >
+              transformer.DelayManager.delayForBothCTEvents(5, 19);

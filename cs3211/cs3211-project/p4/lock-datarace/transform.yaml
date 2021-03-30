@@ -1,0 +1,409 @@
+  transformations:
+    - className: "urlcrawler.Main"
+      methodTransformations:
+        # Add options to specify event traces files.
+        - methodName: "specifyOptions"
+          lineTransforms:
+            # Insert after declaration of options variable
+            - lineNumber: 78
+              code: >
+                org.apache.commons.cli.Option event = new org.apache.commons.cli.Option(
+                  "event", true, "Path to the list of events."
+                );
+
+                event.setRequired(true);
+                options.addOption(event);
+
+        # Hand in traces to EventScheduler
+        - methodName: "readArgs"
+          lineTransforms:
+            # Insert at the beginning of the function
+            - lineNumber: 101
+              code: >
+                String eventFile = cmd.getOptionValue("event");
+                transformer.EventScheduler.shared.readEventSchedule(eventFile);
+
+    - className: "urlcrawler.data.UrlSupplier"
+      methodTransformations:
+        # Overwrite URLSupplier consume() to return dummy url. We are going to overwrite this url value.
+        - methodName: "consume"
+          lineTransforms:
+            # Insert at the beginning of the function
+            - lineNumber: 28
+              code: >
+                /* Directly returning it will cause a compile error */
+                if (true) {
+                  return new urlcrawler.data.Url("http://dummyUrl.com", null, null);
+                }
+
+    - className: "urlcrawler.crawler.jsoup.Crawler"
+      methodTransformations:
+        # Overwrite URLSupplier consume() result since we need to consume url based on their id.
+        - methodName: "run"
+          lineTransforms:
+            # Insert after initialization of nextURL
+            - lineNumber: 53
+              code: >
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.EventScheduler.shared.requestPermissionWithPrefix(
+                  "ct_selectUrl." + crawlerId + "."
+                );
+
+                if (urlId == -1) {
+                  return; /* return if never enabled */
+                }
+
+                nextUrl = new urlcrawler.data.Url(transformer.LockUtils.getUrl(urlId), null, null);
+                logger.info("Selecting url " + nextUrl.getSpec() + " with id: " + urlId);
+
+            # Insert after checking whether url is null or not
+            - lineNumber: 57
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+        # Removes jsoup queueing behaviour for simplification.
+        - methodName: "visit"
+          lineTransforms:
+            # Inserted right after urlQueue.offer()
+            - lineNumber: 117
+              code: >
+                urlQueue.poll();
+
+        # BUL lock event.
+        - methodName: "addToBufferedUrlList"
+          lineTransforms:
+            # Insert right before adding to bufferedUrlList
+            - lineNumber: 130
+              code: >
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                transformer.EventScheduler.shared.requestPermission(
+                  "ct_lockBUL." + crawlerId + "." + urlId
+                );
+
+    - className: "urlcrawler.indexer.IndexedUrlTree"
+      methodTransformations:
+        # Add event locks on check and mark.
+        - methodName: "checkAndMarkUrl"
+          lineTransforms:
+            # Insert right before readLock is executed
+            - lineNumber: 171
+              code: >
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                transformer.EventScheduler.shared.requestPermission(
+                  "ct_lockIUT." + crawlerId + "." + urlId
+                );
+
+            # Insert right after readLock is executed
+            - lineNumber: 173
+              code: >
+                /* Release lockIUT permission */
+                transformer.EventScheduler.shared.releasePermission();
+
+                /* Request for checking whether url inside IUT or not */
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                int enabled = transformer.EventScheduler.shared.requestPermission(
+                  new String[]{
+                    "ct_urlInIUT." + crawlerId + "." + urlId,
+                    "ct_urlNotInIUT." + crawlerId + "." + urlId
+                  }
+                );
+
+                if (enabled == -1) {
+                    return false; /* terminate if never enabled */
+                }
+
+            # Insert after existInFile() and before return false.
+            # Thus, it has to be ct_urlInIUT event.
+            - lineNumber: 175
+              code: >
+                transformer.LockUtils.assertEvent(
+                  transformer.EventScheduler.shared.currentEvent.startsWith("ct_urlInIUT")
+                );
+
+                transformer.EventScheduler.shared.releasePermission();
+
+            # Release permission and Request permission should not be separated into 2 functions
+            # because of the API Limitation
+            - lineNumber: 180
+              code: >
+                /* Insert after the checking in IUT if-block and releasing the read lock.
+                This has to be ct_urlNotInIUT event. */
+
+                transformer.LockUtils.assertEvent(
+                  transformer.EventScheduler.shared.currentEvent.startsWith("ct_urlNotInIUT")
+                );
+
+                transformer.EventScheduler.shared.releasePermission();
+
+                /* Request for IPW add lock event */
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                transformer.EventScheduler.shared.requestPermission(
+                  "ct_lockIPWAdd." + crawlerId + "." + urlId
+                );
+
+            # Insert right after getting inside of synchronized block.
+            - lineNumber: 183
+              code: >
+                /* Immediately release the permission of lock event. */
+                transformer.EventScheduler.shared.releasePermission();
+
+                /* Request for adding event */
+                System.out.println("Requesting permission");
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                int request = transformer.EventScheduler.shared.requestPermission(
+                  new String[]{
+                    "ct_addToIPW_success." + crawlerId + "." + urlId,
+                    "ct_addToIPW_duplicate." + crawlerId + "." + urlId
+                  }
+                );
+
+                if (request == -1) {
+                  return false; /* terminate if never enabled */
+                }
+
+            # Insert right after synchronization block
+            - lineNumber: 186
+              code: >
+                transformer.LockUtils.assertEvent(
+                  transformer.EventScheduler.shared.currentEvent.startsWith(
+                    (needToBeCrawled) ? "ct_addToIPW_success" : "ct_addToIPW_duplicate"
+                  )
+                );
+
+                transformer.EventScheduler.shared.releasePermission();
+
+        - methodName: "writeContents"
+          lineTransforms:
+              # Insert before getting write lock
+            - lineNumber: 80
+              code: >
+                String ibtId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                transformer.EventScheduler.shared.requestPermission(
+                  "ibt_lockIUT." + ibtId + "." + urlId
+                );
+
+              # Insert after obtaining the lock and before writing contents.
+            - lineNumber: 82
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+                String ibtId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                int request = transformer.EventScheduler.shared.requestPermission(
+                  "ibt_writeToIUT_success." + ibtId + "." + urlId
+                );
+
+                if (request == -1) {
+                  return; /* terminate if never enabled */
+                }
+
+              # Insert right after releasing the lock and before getting IPW write lock.
+            - lineNumber: 84
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+                /* Request for IPW write lock event */
+                String ibtId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                transformer.EventScheduler.shared.requestPermission(
+                  "ibt_lockIPWWrite." + ibtId + "." + urlId
+                );
+
+              # Insert right after getting into synchronized block.
+            - lineNumber: 86
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+                String ibtId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                transformer.EventScheduler.shared.requestPermission(
+                  "ibt_removeFromIPW_success." + ibtId + "." + urlId
+                );
+
+              # Insert right after getting out of the synchronized block
+            - lineNumber: 88
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+        - methodName: "writeUrlIndexToFile"
+          lineTransforms:
+              # Insert after obtaining the lock and before writing contents.
+            - lineNumber: 152
+              code: >
+                System.out.println("Unexpected event: ibt_writeToIUT_fail");
+                transformer.LockUtils.assertEvent(false);
+
+    - className: "urlcrawler.data.BufferedUrlList"
+      methodTransformations:
+        - methodName: "add"
+          lineTransforms:
+            # Insert at the beginning of the function
+            - lineNumber: 15
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+                String crawlerId = Thread.currentThread().getName();
+                int urlId = transformer.LockUtils.getUrlId(url.getSpec());
+                int request = transformer.EventScheduler.shared.requestPermission(
+                  new String[]{
+                    "ct_waitInBUL." + crawlerId + "." + urlId,
+                    "ct_writeToBUL_success." + crawlerId + "." + urlId
+                  }
+                );
+
+                if (request == -1) {
+                  return; /* Terminate if never enabled */
+                }
+
+                /* Overwrite the whole while-block as we are unable to insert any statement after the this.wait()
+                with the available API*/
+                while (isFull()) {
+                  transformer.LockUtils.assertEvent(
+                    transformer.EventScheduler.shared.currentEvent.startsWith("ct_waitInBUL")
+                  );
+
+                  transformer.EventScheduler.shared.releasePermission();
+
+                  /* Handles resuming of wait event where the correct thread should be able to obtain the lock */
+                  while(true) {
+                    this.wait();
+
+                    int request = transformer.EventScheduler.shared.requestPermissionWithPrefix("ct_lockBUL.");
+
+                    if (request == -1) {
+                      return; /* Terminate if never enabled */
+                    }
+
+                    if (transformer.EventScheduler.shared.currentEvent.equals(
+                      "ct_lockBUL." + crawlerId + "." + urlId
+                    )) {
+                      transformer.EventScheduler.shared.releasePermission();
+                      break;
+                    }
+
+                    /* Wrong thread has obtained the lock, we shall undo this */
+                    transformer.EventScheduler.shared.undoEvent();
+                    this.notifyAll();
+                  }
+
+                  /* request permission for the next event */
+                  int request = transformer.EventScheduler.shared.requestPermission(
+                    new String[]{
+                      "ct_waitInBUL." + crawlerId + "." + urlId,
+                      "ct_writeToBUL_success." + crawlerId + "." + urlId
+                    }
+                  );
+
+                  if (request == -1) {
+                    return; /* Terminate if never enabled */
+                  }
+                }
+
+            # Insert after successful write
+            - lineNumber: 24
+              code: >
+                transformer.LockUtils.assertEvent(
+                  transformer.EventScheduler.shared.currentEvent.startsWith("ct_writeToBUL_success")
+                );
+
+                transformer.EventScheduler.shared.releasePermission();
+
+        - methodName: "getAll"
+          lineTransforms:
+            # Insert at the beginning of the function
+            - lineNumber: 35
+              code: >
+                transformer.EventScheduler.shared.releasePermission();
+
+                String ibtId = Thread.currentThread().getName();
+                int request = transformer.EventScheduler.shared.requestPermission(
+                  new String[]{"ibt_waitInBUL." + ibtId, "ibt_readFromBUL_success." + ibtId}
+                );
+
+                if (request == -1) {
+                  return new urlcrawler.data.Url[0]; /* Terminate if never enabled */
+                }
+
+                /* Overwrite the whole while-block as we are unable to insert any statement after the this.wait()
+                with the available API*/
+                while (!isFull()) {
+                  transformer.LockUtils.assertEvent(
+                    transformer.EventScheduler.shared.currentEvent.startsWith("ibt_waitInBUL")
+                  );
+
+                  transformer.EventScheduler.shared.releasePermission();
+
+                  /* Handles resuming of wait event where the correct thread should be able to obtain the lock */
+                  while(true) {
+                    this.wait();
+
+                    int permittedIbtId = transformer.EventScheduler.shared.requestPermissionWithPrefix("ibt_lockBUL.");
+
+                    if (permittedIbtId == -1) {
+                      return new urlcrawler.data.Url[0]; /* Terminate if never enabled */
+                    }
+
+                    if (Integer.parseInt(ibtId) == permittedIbtId) {
+                      transformer.EventScheduler.shared.releasePermission();
+                      break;
+                    }
+
+                    /* Wrong thread has obtained the lock, we shall undo this */
+                    transformer.EventScheduler.shared.undoEvent();
+                    this.notifyAll();
+                  }
+
+                  /* request permission for the next event */
+                  int request = transformer.EventScheduler.shared.requestPermission(
+                    new String[]{"ibt_waitInBUL." + ibtId, "ibt_readFromBUL_success." + ibtId}
+                  );
+
+                  if (request == -1) {
+                    return new urlcrawler.data.Url[0]; /* Terminate if never enabled */
+                  }
+                }
+
+            - lineNumber: 44
+              code: >
+                transformer.LockUtils.assertEvent(
+                  transformer.EventScheduler.shared.currentEvent.startsWith("ibt_readFromBUL_success")
+                );
+
+                transformer.EventScheduler.shared.releasePermission();
+
+    - className: "urlcrawler.indexer.IndexBuildingThread"
+      methodTransformations:
+        - methodName: "run"
+          lineTransforms:
+            # Insert at the beginning of the while loop
+            - lineNumber: 27
+              code: >
+                String ibtId = Thread.currentThread().getName();
+                transformer.EventScheduler.shared.requestPermission("ibt_lockBUL." + ibtId);
+
+            - lineNumber: 33
+              code: >
+                String ibtId = Thread.currentThread().getName();
+                if (!transformer.EventScheduler.shared.requestPermission("ibt_writeNext." + ibtId)) {
+                    return; // return if never enabled
+                }
+
+                /* write next event is simply to represent looping. Thus, we can release it immediately. */
+                transformer.EventScheduler.shared.releasePermission();
+
+              # Insert right after the loop
+            - lineNumber: 35
+              code: >
+                String ibtId = Thread.currentThread().getName();
+                if (!transformer.EventScheduler.shared.requestPermission("ibt_exitForLoop." + ibtId)) {
+                    return; // return if never enabled
+                }
+
+                /* release exit for loop immediately */
+                transformer.EventScheduler.shared.releasePermission();

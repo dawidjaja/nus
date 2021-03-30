@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <title>Guessing Game</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+
+    <style>
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.15rem;
+        }
+
+        input {
+            font-size: 1.2rem;
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 1rem;
+        }
+
+        #guess {
+            letter-spacing: 1rem;
+            width: 30rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        #submit {
+            font-size: 1.0rem;
+            letter-spacing: 0.2rem;
+            padding: 0.5rem 0.3rem 0.5rem 0.5rem;
+            text-align: center;
+        }
+
+        #wrong {
+            display: none;
+            text-align: center;
+        }
+
+        #correct {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <p>If you can guess what I am thinking, then I will give you the flag</p>
+        <input type="text" id="guess" />
+        <input type="submit" value="SEND" id="submit" />
+
+        <div id="wrong">
+            <p>Wrong. I was thinking <span id="answer">123456</span></p>
+            <p>Attempt <span id="attempts">0</span>/10</p>
+        </div>
+        <p id="correct">Correct. The flag is <span id="flag">flag{1213}</span></p>
+    </div>
+
+    <script>
+        $("#submit").click(() => {
+            var guess = $("#guess").val()
+            console.log(guess)
+            $.post("/submit", { "guess": guess }, res => {
+                if (res.correct) {
+                    $("#correct").show()
+                    $("#wrong").hide()
+                    $("#flag").text(res.flag)
+                }
+                else {
+                    $("#wrong").show()
+                    $("#correct").hide()
+                    $("#answer").text(res.answer)
+                    $("#attempts").text(res.attempts)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

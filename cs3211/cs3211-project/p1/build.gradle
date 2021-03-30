@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+}
+
+application {
+    mainClassName = "urlcrawler.Main"
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/plugins-release/' }
+}
+
+dependencies {
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.2'
+    implementation group: 'edu.uci.ics', name: 'crawler4j', version: '4.4.0'
+    implementation group: 'com.github.slugify', name: 'slugify', version: '2.4'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    implementation group: 'commons-validator', name: 'commons-validator', version: '1.4.0'
+}
+
+shadowJar {
+    archiveFileName = 'crawler.jar'
+    destinationDirectory = file("${buildDir}/..")
+}
+
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+task mergerJar(type: ShadowJar) {
+    description = "Builds a merger jar"
+    manifest.attributes 'Main-Class' : 'merger.Main'
+    manifest.attributes 'Class-Path' : sourceSets.main.runtimeClasspath
+    archiveClassifier.set('merger')
+    from(project.convention.getPlugin(JavaPluginConvention).sourceSets.main.output)
+
+    configurations = [project.configurations.runtimeClasspath]
+
+    archiveFileName = 'merger.jar'
+    destinationDirectory = file("${buildDir}/..")
+
+}
+
+run {
+    args = ['-input', 'data/url-example.txt',
+            '-output', 'data/result/res.txt',
+            '-time', '24h',
+            '-config', 'src/main/resources/config.properties',
+            '-storedPageNum', '1000',
+            '-statInterval', '1h'
+    ]
+}
+
+task cleanCrawlerResults {
+    description = 'Removes the folder that stores crawling result'
+
+    doFirst {
+        delete 'data/result'
+        println 'data/result folder has been deleted'
+        delete 'data/res.txt'
+        println 'data/res.txt has been deleted'
+    }
+}
+
+task mergeResults(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'merger.Main'
+    description = 'Merge content and index into res.txt'
+}
+
+run.dependsOn(cleanCrawlerResults)
+run.finalizedBy(mergeResults)
+
+assemble.dependsOn(mergerJar)

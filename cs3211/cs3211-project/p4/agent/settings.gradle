@@ -1,0 +1,5 @@
+rootProject.name = 'java-instrumentation'
+include 'application'
+include 'agent'
+include 'Application'
+

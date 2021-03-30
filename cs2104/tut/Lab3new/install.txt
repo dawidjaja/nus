@@ -1,0 +1,63 @@
+Installation Instruction for Haskell stack
+==========================================
+1. # Alternatively, to install on your machine, we suggest
+  installing a package manager for Haskell, called Stack
+
+Installation instructions at https://docs.haskellstack.org/en/stable/install_and_upgrade/.
+
+In summary, for Ubuntu, run `curl -sSL https://get.haskellstack.org/ | sh`.
+To upgrade the system installation, run `curl -sSL https://get.haskellstack.org/ | sh -s - -f`
+
+2. Ensure your stack package manager is up-to-date, as follows
+
+// at the root of your home directory
+// to help ensure that LTS support from stakage is upto date
+// https://www.stackage.org/lts-16.18
+
+stack upgrade
+stack update
+stack build
+
+3. Go to the root of Lab3new project directory,
+   and execute the following which will install MissingH package
+   if it had not previously been installed on your machine
+
+stack exec --package MissingH -- ghci
+:load "src/lab3.hs"
+
+More details on how to use stack can be found here:
+   https://www.fpcomplete.com/haskell/tutorial/stack-play/
+
+A more thorough guide to using stack can be found here:
+   https://howistart.org/posts/haskell/1/
+
+---------------------------------------------------
+Main difference from earlier zip file is the presence of stack.yaml
+with the following more automatic configuration.which uses the
+latest resolver for package loading.
+
+resolver: lts-16.18
+flags: {}
+extra-package-dbs: []
+packages: []
+extra-deps: []
+
+=========================================================
+Additional Step for Users of Windows (thanks to Rebecca Oei)
+
+When installing MissingH, stack is unable to automatically find regex.h
+when installing one of its dependencies regex-posix.
+
+Fix for this problem in stack is described in https://github.com/haskell-hvr/regex-posix/issues/4 [github.com].
+
+This problem can be fixed by adding to stack.yaml the following:
+
+extra-deps:
+    - regex-posix-clib-2.7
+
+flags:
+    regex-posix:
+       _regex-posix-clib: true
+
+
+
