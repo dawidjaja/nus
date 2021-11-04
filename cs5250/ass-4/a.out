@@ -1,0 +1,22 @@
+CS5250: Assignment 4 - memory management.
+This simple application gives you a unique set of parameters
+for your assignment 4 based on your student number.
+To begin, please input your student number.
+> Student number read is: A0184588J
+
+The file 'A0184588J-assign4-input.dat' has been created. It is your input for Assignment 4.
+
+This file contains the input that your buddy-clock list simulator is to process.
+It is uniquely generated based on your Student ID.
+The same Student ID should result in the same file generated.
+
+Each line is a single page transaction. Each line consists of 3 field separated by a tab.
+   A <seqno> <num> - allocated <num> physical page frames. We name this allocation as <seqno>.
+   X <seqno> <num> - An access to the <num> frame of allocation <seqno>.
+   F <seqno> <num> - Deallocate the <num> frame of allocation <seqno>.
+Key assumptions:
+   1. If a free is attempted on a frame that has been evicted, just ignore.
+   2. If an access is attempted on a frame that has been evicted, must treat as a page fault,
+      and reallocate a physical page frame for it.
+See the assignment description for more details.
+Good luck!
